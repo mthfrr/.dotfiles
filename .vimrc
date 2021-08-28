@@ -32,6 +32,9 @@ set list listchars=tab:»\ ,trail:·
 set nofoldenable
 setlocal foldmethod=syntax
 
+" Auto generate tags file on file write of *.c and *.h files
+" autocmd BufWritePost *.c,*.h silent! !ctags . &
+
 " per .git vim configs
 " just `git config vim.settings "expandtab sw=4 sts=4"` in a git repository
 " change syntax settings for this repository
