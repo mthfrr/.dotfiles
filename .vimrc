@@ -1,8 +1,15 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
 " remove annoying beep
 set visualbell
 
 set background=dark
-colorscheme desert
+" colorscheme desert
+colorscheme gruvbox
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -12,9 +19,10 @@ set encoding=utf-8 fileencodings=
 syntax on
 set showmatch " Shows matching brackets
 
-:set mouse=a
+set mouse=a
 
-set relativenumber
+set number
+" set relativenumber
 set cc=80
 
 set autoindent
@@ -24,6 +32,7 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
+set autowrite " enable saving before make
 
 autocmd Filetype make setlocal noexpandtab
 
