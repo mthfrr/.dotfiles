@@ -1,11 +1,12 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
 " remove annoying beep
-set visualbell
+set belloff=all
 
 set background=dark
 " colorscheme desert
