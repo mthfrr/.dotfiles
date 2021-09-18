@@ -131,7 +131,7 @@ alias lr='ll -R'           #  Recursive ls.
 alias la='ll -A'           #  Show hidden files.
 
 # git alias
-alias gita="git add ."
+alias gita="git add"
 alias gitu="git add -u"
 alias gits="git status"
 alias gitc="git commit -m "
