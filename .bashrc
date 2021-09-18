@@ -135,6 +135,7 @@ alias gita="git add ."
 alias gitu="git add -u"
 alias gits="git status"
 alias gitc="git commit -m "
+alias gitt="git tag -a "
 alias gitp="git push --follow-tags"
 alias gitl="git log -20 --oneline"
 
