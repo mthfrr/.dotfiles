@@ -11,7 +11,30 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc   # --> Read /etc/bashrc, if present.
 fi
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
 
 # Normal Colors
 Black='\e[0;30m'        # Black
@@ -96,48 +119,16 @@ function parse_git_dirty {
 
 # export PS1="\[${Green}\]\u@\h \[${Cyan}\]\t \[${White}\]\w \[${Purple}\]$(parse_git_branch)\[${Yellow}\]\$ \[$(tput sgr0)\]"
 
-prompt_l() {
-    git_msg=$(parse_git_branch)
-    echo -e "${Green}${USER} ${White}${PWD} ${Purple}${git_msg}${Yellow}"
-}
-
-prompt_r() {
-    echo -e "${Cyan}hello${NC}"
-}
-
 build_prompt(){
     git_msg=$(parse_git_branch)
     PS1="\[${Green}\]\u \[${Cyan}\]\t \[${White}\]\W \[${Purple}\]${git_msg}\[${Yellow}\]\$ \[${NC}\]"
-
-    #PS1L="${Green}${USER} ${White}${PWD} ${Purple}${git_msg}${Yellow}"
-    #PS1R="${Cyan}hello${NC}"
-    #comp=$($(prompt_r) | wc -c)
-    #printf "%s%$(($(tput cols)+${comp}))s\n" "$(prompt_l)" "$(prompt_r)"
 }
 
-
 PROMPT_COMMAND=build_prompt
-#PS1="\$ "
 
-
-alias ls='ls -h --color'
-alias lx='ls -lXB'         #  Sort by extension.
-alias lk='ls -lSr'         #  Sort by size, biggest last.
-
-# The ubiquitous 'll': directories first, with alphanumeric sorting:
-alias ll="ls -lav --group-directories-first"
-alias lm='ll | less'        #  Pipe through 'more'
-alias lr='ll -R'           #  Recursive ls.
-alias la='ll -A'           #  Show hidden files.
-
-# git alias
-alias gita="git add"
-alias gitu="git add -u"
-alias gits="git status"
-alias gitc="git commit -m "
-alias gitt="git tag -a "
-alias gitp="git push --follow-tags"
-alias gitl="git log -20 --oneline"
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 if [ -d ~/afs/bin ] ; then
     PATH=$PATH:~/afs/bin
