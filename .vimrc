@@ -9,8 +9,8 @@ call plug#end()
 set belloff=all
 
 set background=dark
-" colorscheme desert
 colorscheme gruvbox
+
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -41,6 +41,13 @@ set list listchars=tab:»\ ,trail:·
 
 set nofoldenable
 setlocal foldmethod=syntax
+
+let &t_SI = "\<esc>[6 q"  " solid I-beam in insert mode
+let &t_SR = "\<esc>[4 q"  " solid underline in replace mode
+let &t_EI = "\<esc>[2 q"  " default cursor solid block otherwise
+
+" reduce latency when escaping
+set ttimeoutlen=10
 
 " Auto generate tags file on file write of *.c and *.h files
 " autocmd BufWritePost *.c,*.h silent! !ctags . &
