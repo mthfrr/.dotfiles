@@ -124,7 +124,32 @@ build_prompt(){
     PS1="\[${Green}\]\u \[${Cyan}\]\t \[${White}\]\W \[${Purple}\]${git_msg}\[${Yellow}\]\$ \[${NC}\]"
 }
 
+exit_status(){
+    code=$?
+    if [ $code -eq 0 ]; then
+        color+="\e[1;28;42m"
+    else
+        color+="\e[1;29;41m"
+    fi
+    offset=$(echo "scale=0; 3-  (l($code)/l(10)) / 1" | bc -l)
+    output=""
+    for _ in $(seq 1 $offset); do
+        output+=" "
+    done
+    printf "${NC}${color}%s" "${output}${code} "
+}
+
+rightprompt(){
+    offset=17
+    printf "%*s" $(($COLUMNS+$offset)) "${Cyan}${PWD} \$(exit_status)"
+}
+build_prompt2(){
+    git_msg=$(parse_git_branch)
+    PS1="\[$(tput sc; rightprompt $?; tput rc)\]\[${Green}\]\u \[${Cyan}\]\t \[${Purple}\]${git_msg}\n\[${Yellow}\]\$ \[${NC}\]"
+}
+
 PROMPT_COMMAND=build_prompt
+PROMPT_COMMAND=build_prompt2
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
