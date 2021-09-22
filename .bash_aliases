@@ -17,3 +17,5 @@ alias gitc="git commit -m "
 alias gitt="git tag -a "
 alias gitp="git push --follow-tags"
 alias gitl="git log -20 --oneline"
+
+alias decolorize='sed -r "s/\\x1B\\[([0-9]*(;)?){0,3}[mGK]//g"'
