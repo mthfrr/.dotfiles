@@ -151,6 +151,8 @@ build_prompt2(){
 PROMPT_COMMAND=build_prompt
 PROMPT_COMMAND=build_prompt2
 
+mktouch() { mkdir -p $(dirname $1) && touch $1; }
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
