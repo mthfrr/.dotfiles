@@ -25,4 +25,14 @@ gitct() {
     git tag -a "$1$epoch" -m "$2" 
 }
 
+git_retag_all() {
+    tags=( $(git tag | sed -E "s/(^[^-]*-[^-]*-).*$/\1/" | sort | uniq | tr '\n' ' ') )
+    echo "${#tags[@]}" tags
+    epoch=$(date +%s)
+    for i in "${tags[@]}"; do
+        # echo "$i$epoch"
+        git tag -a "$i$epoch" -m "re-tag all"
+    done
+}
+
 alias decolorize='sed -r "s/\\x1B\\[([0-9]*(;)?){0,3}[mGK]//g"'
