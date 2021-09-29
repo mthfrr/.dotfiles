@@ -32,7 +32,8 @@ tags = check_output(["git", "for-each-ref",  "--sort=creatordate",  "--format",
 base = lambda x: re.sub(r"-[^-]*$", "", x)
 report = {}
 for t in tags:
-    report[base(t)] = (tags_status[t], tags_link[t])
+    if (t in tags_status):
+        report[base(t)] = (tags_status[t], tags_link[t])
 passed = list(map(lambda x: (x[0], x[1][1]), filter(lambda x: x[1][0], report.items())))
 failed = list(map(lambda x: (x[0], x[1][1]), filter(lambda x: not x[1][0], report.items())))
 print(f"{len(failed)}/{len(report)} failed")
