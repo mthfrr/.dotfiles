@@ -27,11 +27,18 @@ content = r.read().decode("utf-8")
 data = content.replace("\n", "")
 data = data.replace(" ", "")
 data = re.findall(r"<tbody>.*?</tbody>", data)
-data = [re.findall(r"(?<=<td>).*?(?=</td>)", x) for x in data]
-tags_status = list([(x[2], "badge-success" in x[3]) for x in data])
+data = [re.findall(r"(?<=<td>).*?(?=</td>)", x) for x in data][10:]
+# print(data)
+TAG = 4
+SUCC = 5
+LINK = 7
+tags_status = list([(x[TAG], "badge-success" in x[SUCC]) for x in data])
 tags_status = dict(tags_status)
-tags_link = list([(x[2], re.findall(r'(?<=href=")[^>]*(?=">)', x[4])[0]) for x in data])
+# print(tags_status)
+tags_link = list([(x[TAG], re.findall(r'(?<=href=")[^>]*(?=">)', x[LINK])) for x in data])
+tags_link = map(lambda x: x if x[1] != [] else (x[0], "Unavailable"), tags_link)
 tags_link = dict(tags_link)
+#print("\n".join(map(lambda x: str(x), tags_link.items())))
 tags = map(lambda x: x[10:], check_output(["git", "for-each-ref",  "--sort=creatordate",  "--format",
     "%(refname)", "refs/tags"]).decode("utf-8").split()[:-1])
 base = lambda x: re.sub(r"-[^-]*$", "", x)
