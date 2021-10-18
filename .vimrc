@@ -1,9 +1,51 @@
-call plug#begin('~/.vim/plugged')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-sensible'
+Plugin 'natebosch/vim-lsc'
+Plugin 'dense-analysis/ale'
+" Plugin 'vim-syntastic/syntastic'
+" Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
-call plug#end()
+call vundle#end()
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:lsc_server_commands = {
+    \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
+    \ 'python': { 'command': 'pyls' },
+    \}
+let g:lsc_enable_autocomplete = v:true
+let g:lsc_auto_map = v:true
+set completeopt-=preview
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_c_checkers=['gcc', 'make']
+" let g:syntastic_c_compiler_options="-Wall -Wextra -pedantic -std=c99"
+" let g:syntastic_c_check_header=1
+
+let g:ale_fix_on_save=1
+let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_save=1
+let g:ale_c_parse_makefile=1
+let g:ale_c_gcc_options="-Wall -Wextra -pedantic -std=c99"
+let g:ale_linter={
+   \ 'c': ['gcc']
+   \ }
+let g:ale_fixers={
+   \ '*': ['remove_trailing_lines', 'trim_whitespace']
+   \ }
+" let g:ale_completion_enabled = 1
+" set omnifunc=ale#completion#OmniFunc
 
 " remove annoying beep
 set belloff=all
@@ -33,11 +75,38 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
+set cinoptions+=:0
+
+
+command W w
+command Q q
+command Wq wq
+command WQ wq
+
+let mapleader="\<Space>"
+nnoremap <Space> <nop>
+nnoremap <Leader>f :Explore<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>s :source<Space>$MYVIMRC<CR>
+nnoremap <Leader>d :LSClientGoToDefinitionSplit<CR>
+nnoremap <Leader>r :LSClientFindReferences<CR>
+
+inoreabbrev #i #include
+inoreabbrev #d #define
+inoreabbrev st struct
+
 set autowrite " enable saving before make
 
 autocmd Filetype make setlocal noexpandtab
 
 set list listchars=tab:»\ ,trail:·
+
+" inoremap ( ()<Esc>i
+" inoremap { {}<Esc>i
+inoremap {<CR> {<CR>}<Esc>ko
+" inoremap [ []<Esc>i
+" inoremap " ""<Esc>i
+" inoremap ' ''<Esc>i
 
 set nofoldenable
 setlocal foldmethod=syntax
@@ -51,6 +120,11 @@ set ttimeoutlen=10
 
 " Auto generate tags file on file write of *.c and *.h files
 " autocmd BufWritePost *.c,*.h silent! !ctags . &
+
+autocmd BufRead,BufNewFile *.c,*.h setlocal comments=s:/**,mb:**,ex:*/,s:/*,mb:**,ex:*/
+packadd termdebug
+
+set path+=,/run/current-system/sw/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include-fixed,/nix/store/9r0a3dipi8saq2zasp668zsk6qhqp5jb-glibc-2.32-48-dev/include
 
 " per .git vim configs
 " just `git config vim.settings "expandtab sw=4 sts=4"` in a git repository

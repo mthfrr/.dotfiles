@@ -18,6 +18,8 @@ case $- in
       *) return;;
 esac
 
+history -a
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -132,5 +134,12 @@ PROMPT_COMMAND=build_prompt2
 mktouch() { mkdir -p "$(dirname "$1")" && touch "$1"; }
 
 if [ -d ~/afs/bin ] ; then
-    PATH=$PATH:~/afs/bin
+    PATH=~/afs/bin:$PATH
+    export CPATH='/run/current-system/sw/include'
+fi
+
+if [ -d ~/afs/pip ] ; then
+    alias pipinstall="pip install --target=$HOME/afs/pip/ "
+    export PYTHONPATH=~/afs/pip
+    PATH=~/afs/pip/bin:$PATH
 fi

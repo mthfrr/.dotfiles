@@ -27,25 +27,31 @@ content = r.read().decode("utf-8")
 data = content.replace("\n", "")
 data = data.replace(" ", "")
 data = re.findall(r"<tbody>.*?</tbody>", data)
-data = [re.findall(r"(?<=<td>).*?(?=</td>)", x) for x in data][10:]
-# print(data)
+data = [re.findall(r"(?<=<td>).*?(?=</td>)", x) for x in data][1:]
+# print("\n".join(str(x) for x in  data))
 TAG = 4
 SUCC = 5
 LINK = 7
 tags_status = list([(x[TAG], "badge-success" in x[SUCC]) for x in data])
 tags_status = dict(tags_status)
-# print(tags_status)
-tags_link = list([(x[TAG], re.findall(r'(?<=href=")[^>]*(?=">)', x[LINK])) for x in data])
-tags_link = map(lambda x: x if x[1] != [] else (x[0], "Unavailable"), tags_link)
+#print("\n".join(map(lambda x: f"remote: {x}", tags_link.keys())))
+tags_link = list([(x[TAG], re.findall(r'(?<=href="/traces/)[^>]*(?=">)', x[LINK])) for x in data])
+tags_link = map(lambda x: (x[0], x[1][0]) if x[1] != [] else (x[0], "Unavailable"), tags_link)
 tags_link = dict(tags_link)
-#print("\n".join(map(lambda x: str(x), tags_link.items())))
-tags = map(lambda x: x[10:], check_output(["git", "for-each-ref",  "--sort=creatordate",  "--format",
-    "%(refname)", "refs/tags"]).decode("utf-8").split()[:-1])
+# print("\n".join(map(lambda x: f"remote: {x}", tags_link.keys())))
+tags = list(map(lambda x: x[10:], check_output(["git", "for-each-ref",  "--sort=creatordate",  "--format",
+    "%(refname)", "refs/tags"]).decode("utf-8").split()[:-1]))
+# print("\n".join(f"local: {t}" for t in tags))
 base = lambda x: re.sub(r"-[^-]*$", "", x)
 report = {}
 for t in tags:
-    if (t in tags_status):
+    if (t in tags_status.keys()):
+        # print(f"found: {t} ({base(t)})")
         report[base(t)] = (tags_status[t], tags_link[t])
+    else:
+        # print(f"not in remote: {t}")
+        pass
+#print(report)
 passed = list(map(lambda x: (x[0], x[1][1]), filter(lambda x: x[1][0], report.items())))
 failed = list(map(lambda x: (x[0], x[1][1]), filter(lambda x: not x[1][0], report.items())))
 print(f"{len(failed)}/{len(report)} failed")
