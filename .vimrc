@@ -63,6 +63,7 @@ syntax on
 set showmatch " Shows matching brackets
 
 set mouse=a
+set ttymouse=sgr
 
 set number
 " set relativenumber
