@@ -8,6 +8,12 @@ alias lm='ll | less'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
 alias la='ll -A'           #  Show hidden files.
 
+alias cf='clang-format --style=FILE $(find . -type f -name "*.[ch]")'
+
+alias tree='tree -C'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+
 # git alias
 alias gita="git add"
 alias gitu="git add -u"
@@ -16,7 +22,7 @@ alias gits="git status"
 alias gitc="git commit -m "
 #alias gitt="git tag -a "
 alias gitp="git push --follow-tags"
-alias gitl="git log -10 --oneline"
+alias gitl="git log -10 --oneline --graph"
 
 calc_new_tag() {
     [ $# -ne 1 ] && echo "Usage: $0 [tag-name-base]" && return 1
@@ -57,12 +63,12 @@ gitct() {
 }
 
 git-tag-all() {
-    [ $# -ne 1 ] && echo "Usage: $0 [tag-ending]" && return 1
     tags=( $(git tag | sed -E "s/(^[^-]*-[^-]*-).*$/\1/" | sort | uniq | tr '\n' ' ') )
     echo "${#tags[@]}" tags
     for i in "${tags[@]}"; do
         #echo "$i$1"
-        git tag -a "$i$1" -m "re-tag all"
+        gitt "$i"
+        #git tag -a "$i$1" -m "re-tag all"
     done
 }
 
