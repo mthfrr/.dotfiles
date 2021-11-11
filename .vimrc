@@ -39,11 +39,13 @@ let g:ale_lint_on_save=1
 let g:ale_c_parse_makefile=1
 let g:ale_c_gcc_options="-Wall -Wextra -pedantic -std=c99"
 let g:ale_linter={
-   \ 'c': ['gcc']
-   \ }
+    \ 'c': ['gcc']
+    \ }
 let g:ale_fixers={
-   \ '*': ['remove_trailing_lines', 'trim_whitespace']
-   \ }
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'c': ['clang-format']
+    \ }
+let g:ale_c_clangformat_use_local_file=1
 " let g:ale_completion_enabled = 1
 " set omnifunc=ale#completion#OmniFunc
 
