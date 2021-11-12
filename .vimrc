@@ -129,6 +129,34 @@ packadd termdebug
 
 set path+=,/run/current-system/sw/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include-fixed,/nix/store/9r0a3dipi8saq2zasp668zsk6qhqp5jb-glibc-2.32-48-dev/include
 
+" :rename[!] {newname}
+
+command! -nargs=* -complete=customlist,SiblingFiles -bang Rename :call Rename("<args>", "<bang>")
+cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
+
+function! SiblingFiles(A, L, P)
+    return map(split(globpath(expand("%:h") . "/", a:A . "*"), "\n"), 'fnamemodify(v:val, ":t")')
+endfunction
+
+function! Rename(name, bang)
+    let l:curfile = expand("%:p")
+    let l:curpath = expand("%:h") . "/"
+    let v:errmsg = ""
+    silent! exe "saveas" . a:bang . " " . fnameescape(l:curpath . a:name)
+    if v:errmsg =~# '^$\|^E329'
+        let l:oldfile = l:curfile
+        let l:curfile = expand("%:p")
+        if l:curfile !=# l:oldfile && filewritable(l:curfile)
+            silent exe "bwipe! " . fnameescape(l:oldfile)
+            if delete(l:oldfile)
+                echoerr "Could not delete " . l:oldfile
+            endif
+        endif
+    else
+        echoerr v:errmsg
+    endif
+endfunction
+
 " per .git vim configs
 " just `git config vim.settings "expandtab sw=4 sts=4"` in a git repository
 " change syntax settings for this repository
