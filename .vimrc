@@ -1,76 +1,85 @@
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-sensible'
-Plugin 'natebosch/vim-lsc'
-Plugin 'dense-analysis/ale'
-" Plugin 'vim-syntastic/syntastic'
-" Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-sensible'
+" Plug 'natebosch/vim-lsc'
+" Plug 'dense-analysis/ale'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'vim-scripts/Rename'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rhysd/vim-clang-format'
 
-call vundle#end()
+call plug#end()
 
+" airline config
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:lsc_server_commands = {
-    \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
-    \ 'python': { 'command': 'pyls' },
-    \}
-let g:lsc_enable_autocomplete = v:true
-let g:lsc_auto_map = v:true
-set completeopt-=preview
+" lsc config
+" let g:lsc_server_commands = {
+"     \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
+"     \ 'python': { 'command': 'pyls' },
+"     \}
+" let g:lsc_enable_autocomplete = v:true
+" let g:lsc_auto_map = v:true
+" set completeopt-=preview
+" 
+" " ale config
+" let g:ale_fix_on_save=1
+" let g:ale_lint_on_text_changed=0
+" let g:ale_lint_on_save=1
+" let g:ale_c_parse_makefile=1
+" let g:ale_c_gcc_options="-Wall -Wextra -pedantic -std=c99"
+" let g:ale_linter={
+"     \ 'c': ['gcc']
+"     \ }
+" let g:ale_fixers={
+"     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+"     \ 'c': ['clang-format']
+"     \ }
+" let g:ale_c_clangformat_use_local_file=1
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_c_checkers=['gcc', 'make']
-" let g:syntastic_c_compiler_options="-Wall -Wextra -pedantic -std=c99"
-" let g:syntastic_c_check_header=1
-
-let g:ale_fix_on_save=1
-let g:ale_lint_on_text_changed=0
-let g:ale_lint_on_save=1
-let g:ale_c_parse_makefile=1
-let g:ale_c_gcc_options="-Wall -Wextra -pedantic -std=c99"
-let g:ale_linter={
-    \ 'c': ['gcc']
-    \ }
-let g:ale_fixers={
-    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \ 'c': ['clang-format']
-    \ }
-let g:ale_c_clangformat_use_local_file=1
-" let g:ale_completion_enabled = 1
-" set omnifunc=ale#completion#OmniFunc
+" clang-format
+let g:clang_format#code_style="FILE"
+autocmd BufRead,BufNewFile *.c,*.h ClangFormatAutoEnable
 
 " remove annoying beep
 set belloff=all
 
-set background=dark
-colorscheme gruvbox
+" TextEdit might fail if hidden is not set.
+set hidden
 
-
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
 
 set encoding=utf-8 fileencodings=
+
+" visual
+set background=dark
+colorscheme gruvbox
 syntax on
 set showmatch " Shows matching brackets
+set list listchars=tab:»\ ,trail:·
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
+" cursor setup
+let &t_SI = "\<esc>[6 q"  " solid I-beam in insert mode
+let &t_SR = "\<esc>[4 q"  " solid underline in replace mode
+let &t_EI = "\<esc>[2 q"  " default cursor solid block otherwise
+
+" mouse
 set mouse=a
-set ttymouse=sgr
+set ttymouse=sgr " wide monitor mouse fix
 
 set number
-" set relativenumber
 set cc=80
 
+" indent
+filetype plugin indent on
 set autoindent
 set smartindent
 set expandtab
@@ -78,14 +87,19 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 
-set cinoptions+=:0
 
-
+" usual typo and shortcuts
 command W w
 command Q q
 command Wq wq
 command WQ wq
 
+inoreabbrev #i #include
+inoreabbrev #d #define
+inoreabbrev #p #pragma
+inoreabbrev st struct
+
+" custom shotcuts
 let mapleader="\<Space>"
 nnoremap <Space> <nop>
 nnoremap <Leader>f :Explore<CR>
@@ -93,74 +107,70 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>s :source<Space>$MYVIMRC<CR>
 nnoremap <Leader>d :LSClientGoToDefinitionSplit<CR>
 nnoremap <Leader>r :LSClientFindReferences<CR>
-
-inoreabbrev #i #include
-inoreabbrev #d #define
-inoreabbrev st struct
+" c braces setup
+inoremap {<CR> {<CR>}<Esc>ko
 
 set autowrite " enable saving before make
 
-autocmd Filetype make setlocal noexpandtab
-
-set list listchars=tab:»\ ,trail:·
-
-" inoremap ( ()<Esc>i
-" inoremap { {}<Esc>i
-inoremap {<CR> {<CR>}<Esc>ko
-" inoremap [ []<Esc>i
-" inoremap " ""<Esc>i
-" inoremap ' ''<Esc>i
-
+" set foldes
 set nofoldenable
 setlocal foldmethod=syntax
-
-let &t_SI = "\<esc>[6 q"  " solid I-beam in insert mode
-let &t_SR = "\<esc>[4 q"  " solid underline in replace mode
-let &t_EI = "\<esc>[2 q"  " default cursor solid block otherwise
 
 " reduce latency when escaping
 set ttimeoutlen=10
 
-" Auto generate tags file on file write of *.c and *.h files
-" autocmd BufWritePost *.c,*.h silent! !ctags . &
+" FILETYPE SPECIFICS
 
+" makefiles options
+autocmd Filetype make setlocal noexpandtab
+
+" c files
 autocmd BufRead,BufNewFile *.c,*.h setlocal comments=s:/**,mb:**,ex:*/,s:/*,mb:**,ex:*/
+autocmd BufRead,BufNewFile *.c,*.h setlocal cinoptions+=:0 " case statement indent fix
+autocmd BufRead,BufNewFile *.c,*.h setlocal path+=,/run/current-system/sw/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include-fixed,/nix/store/9r0a3dipi8saq2zasp668zsk6qhqp5jb-glibc-2.32-48-dev/include
+
 packadd termdebug
 
-set path+=,/run/current-system/sw/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/include,/nix/store/5qjycalzb9sqzvqg65kf5zimqwjabm9g-gcc-10.3.0/lib/gcc/x86_64-unknown-linux-gnu/10.3.0/include-fixed,/nix/store/9r0a3dipi8saq2zasp668zsk6qhqp5jb-glibc-2.32-48-dev/include
+":CocInstall coc-json coc-clangd
+" coc config
+let g:coc_global_extensions = [
+            \'coc-json',
+            \'coc-git',
+            \'coc-clangd',
+            \'@yaegassy/coc-pylsp',
+            \'coc-sh'
+            \]
 
-" :rename[!] {newname}
+" coc mapping
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-command! -nargs=* -complete=customlist,SiblingFiles -bang Rename :call Rename("<args>", "<bang>")
-cabbrev rename <c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? "Rename" : "rename"<CR>
-
-function! SiblingFiles(A, L, P)
-    return map(split(globpath(expand("%:h") . "/", a:A . "*"), "\n"), 'fnamemodify(v:val, ":t")')
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-function! Rename(name, bang)
-    let l:curfile = expand("%:p")
-    let l:curpath = expand("%:h") . "/"
-    let v:errmsg = ""
-    silent! exe "saveas" . a:bang . " " . fnameescape(l:curpath . a:name)
-    if v:errmsg =~# '^$\|^E329'
-        let l:oldfile = l:curfile
-        let l:curfile = expand("%:p")
-        if l:curfile !=# l:oldfile && filewritable(l:curfile)
-            silent exe "bwipe! " . fnameescape(l:oldfile)
-            if delete(l:oldfile)
-                echoerr "Could not delete " . l:oldfile
-            endif
-        endif
-    else
-        echoerr v:errmsg
-    endif
-endfunction
-
-" per .git vim configs
-" just `git config vim.settings "expandtab sw=4 sts=4"` in a git repository
-" change syntax settings for this repository
-let git_settings = system("git config --get vim.settings")
-if strlen(git_settings)
-	exe "set" git_settings
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nmap <leader>rn <Plug>(coc-rename)
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
