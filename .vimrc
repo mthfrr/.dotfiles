@@ -137,7 +137,7 @@ let g:coc_global_extensions = [
             \'coc-json',
             \'coc-git',
             \'coc-clangd',
-            \'@yaegassy/coc-pylsp',
+            \'coc-python',
             \'coc-sh'
             \]
 
