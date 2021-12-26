@@ -143,6 +143,9 @@ if [ -d ~/afs/pip ] ; then
     export PYTHONPATH=~/afs/pip
     PATH=~/afs/pip/bin:$PATH
 fi
+
+export PATH=$PATH:$HOME/.local/bin
+
 # local nodejs
 export NODEJS_HOME=/home/pol/.local/nodejs/*
 export PATH=$PATH:$NODEJS_HOME/bin
