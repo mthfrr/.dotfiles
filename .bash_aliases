@@ -72,4 +72,11 @@ git-tag-all() {
     done
 }
 
+gituctp() {
+    tag=exercises-${PWD##*/}
+    gitu
+    yes | gitct $tag "-"
+    gitp
+}
+
 alias decolorize='sed -r "s/\\x1B\\[([0-9]*(;)?){0,3}[mGK]//g"'
