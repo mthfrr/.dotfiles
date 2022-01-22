@@ -42,9 +42,9 @@ set cc=80
 set autoindent
 set smartindent
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 set autowrite " enable saving before make
 
@@ -88,6 +88,13 @@ function SetCOptions()
     setlocal cinoptions+=:0 " case statement indent fix
 endfunction
 
+autocmd BufRead,BufNewFile c,python,java,javascript call SetTablenOptions()
+function SetTablenOptions()
+    setlocal shiftwidth=4
+    setlocal tabstop=4
+    setlocal softtabstop=4
+endfunction
+
 " ### Plugins ###
 
 " airline
@@ -102,12 +109,16 @@ set shortmess+=c
 
 " let g:coc_confing_home = '~/path/to/coc-settings.json'
 let g:coc_global_extensions = [
+            \ 'coc-prettier',
             \ 'coc-json',
+            \ 'coc-sh',
             \ 'coc-html',
             \ 'coc-css',
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-java',
             \ 'coc-clangd',
+            \ 'coc-cmake',
+            \ 'coc-vimlsp',
             \ ]
 
 inoremap <silent><expr> <TAB>
