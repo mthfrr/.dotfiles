@@ -96,7 +96,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " CoC
 set hidden
-set cmdheight=1 " recomand 2
+set cmdheight=2 " recomand 2
 set shortmess+=c
 
 
