@@ -3,9 +3,11 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-sensible'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -116,7 +118,6 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-pyright',
             \ 'coc-java',
-            \ 'coc-clangd',
             \ 'coc-cmake',
             \ 'coc-vimlsp',
             \ ]

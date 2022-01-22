@@ -2,44 +2,19 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+
+
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-sensible'
-" Plug 'natebosch/vim-lsc'
-" Plug 'dense-analysis/ale'
+
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-scripts/Rename'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'rhysd/vim-clang-format'
 
 call plug#end()
-
-" airline config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" lsc config
-" let g:lsc_server_commands = {
-"     \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
-"     \ 'python': { 'command': 'pyls' },
-"     \}
-" let g:lsc_enable_autocomplete = v:true
-" let g:lsc_auto_map = v:true
-" set completeopt-=preview
-" 
-" " ale config
-" let g:ale_fix_on_save=1
-" let g:ale_lint_on_text_changed=0
-" let g:ale_lint_on_save=1
-" let g:ale_c_parse_makefile=1
-" let g:ale_c_gcc_options="-Wall -Wextra -pedantic -std=c99"
-" let g:ale_linter={
-"     \ 'c': ['gcc']
-"     \ }
-" let g:ale_fixers={
-"     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-"     \ 'c': ['clang-format']
-"     \ }
-" let g:ale_c_clangformat_use_local_file=1
 
 " clang-format
 let g:clang_format#code_style="FILE"
@@ -104,9 +79,8 @@ let mapleader="\<Space>"
 nnoremap <Space> <nop>
 nnoremap <Leader>f :Explore<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>s :source<Space>$MYVIMRC<CR>
-nnoremap <Leader>d :LSClientGoToDefinitionSplit<CR>
-nnoremap <Leader>r :LSClientFindReferences<CR>
+nnoremap <Leader>q :q<CR>
+
 " c braces setup
 inoremap {<CR> {<CR>}<Esc>ko
 
@@ -131,40 +105,51 @@ autocmd BufRead,BufNewFile *.c,*.h setlocal path+=,/run/current-system/sw/includ
 
 packadd termdebug
 
-":CocInstall coc-json coc-clangd
-" coc config
-let g:coc_global_extensions = [
-            \'coc-json',
-            \'coc-clangd',
-            \'coc-pyright',
-            \'coc-sh'
-            \]
+" CoC
+set hidden
+set cmdheight=2 " recomand 2
+set shortmess+=c
 
-" coc mapping
+
+" let g:coc_confing_home = '~/path/to/coc-settings.json'
+let g:coc_global_extensions = [
+            \ 'coc-prettier',
+            \ 'coc-json',
+            \ 'coc-sh',
+            \ 'coc-html',
+            \ 'coc-css',
+            \ 'coc-pyright',
+            \ 'coc-java',
+            \ 'coc-cmake',
+            \ 'coc-vimlsp',
+            \ ]
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -173,3 +158,22 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>r <Plug>(coc-rename)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
