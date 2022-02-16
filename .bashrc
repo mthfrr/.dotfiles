@@ -1,27 +1,25 @@
 #!/bin/bash
 # ~/.bashrc
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-#-------------------------------------------------------------
-# Source global definitions (if any)
-#-------------------------------------------------------------
 
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc   # --> Read /etc/bashrc, if present.
 fi
 
 # If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 case $- in
     *i*) ;;
       *) return;;
 esac
 
+######## Shell setup ########
+
+# History setup
 history -a
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
@@ -39,9 +37,7 @@ shopt -s checkwinsize
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+######## PS1 Setup ########
 
 NC="\e[m"               # Color Reset
 
@@ -116,6 +112,7 @@ git_msg() {
     else echo -e "\e[1;37;45m ${msg} ${NC}"
     fi
 }
+alias decolorize='sed -r "s/\\x1B\\[([0-9]*(;)?){0,3}[mGK]//g"'
 rightprompt(){
     rps1="$(git_msg)$(prompt_time)\$(exit_status)"
     rps1_stripped=$(echo "$rps1" | decolorize)
@@ -131,21 +128,26 @@ build_prompt2(){
 
 PROMPT_COMMAND=build_prompt2
 
-mktouch() { mkdir -p "$(dirname "$1")" && touch "$1"; }
 
-if [ -d ~/afs/bin ] ; then
-    PATH=~/afs/bin:$PATH
-    export CPATH='/run/current-system/sw/include'
+######### Load aliases ########
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 
-if [ -d ~/afs/pip ] ; then
-    alias pipinstall="pip install --target=$HOME/afs/pip/ "
-    export PYTHONPATH=~/afs/pip
-    PATH=~/afs/pip/bin:$PATH
+######### Add to PATH ########
+
+[ -d ~/.local/bin ] && export PATH=$PATH:$HOME/.local/bin
+[ -d ~/afs/bin ] && export PATH=$PATH:$HOME/afs/bin
+[ -d ~/bin ] && export PATH=$PATH:$HOME/bin
+
+
+######## KITTY SHELL ########
+
+if which kitty > /dev/null 2>&1; then
+    if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 fi
 
-export PATH=$PATH:$HOME/.local/bin
+######## Load specifique setup #########
 
-# local nodejs
-export NODEJS_HOME=/home/pol/.local/nodejs/*
-export PATH=$PATH:$NODEJS_HOME/bin
+[ -f ~/.bashrc_local ] && source ~/.bashrc_local

@@ -24,6 +24,8 @@ alias gitc="git commit -m "
 alias gitp="git push --follow-tags"
 alias gitl="git log -10 --oneline --graph"
 
+mktouch() { mkdir -p "$(dirname "$1")" && touch "$1"; }
+
 calc_new_tag() {
     [ $# -ne 1 ] && echo "Usage: $0 [tag-name-base]" && return 1
     prev_tag=$(git tag --sort=creatordate | sed -n "s/.*\($1.*\).*/\1/p" | tail -n 1)
@@ -47,7 +49,7 @@ gitt() {
     echo Tag "$new_tag" ?
     read -r -p "Are you sure? [y/N] " response
     case "$response" in
-        [yY][eE][sS]|[yY])
+        [yY][eE][sS])
             git tag -a "$new_tag" -m "-"
             ;;
         *)
@@ -79,4 +81,3 @@ gituctp() {
     gitp
 }
 
-alias decolorize='sed -r "s/\\x1B\\[([0-9]*(;)?){0,3}[mGK]//g"'
