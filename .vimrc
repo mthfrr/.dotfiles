@@ -11,6 +11,7 @@ Plug 'tpope/vim-sensible'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ziglang/zig.vim'
 
 Plug 'rhysd/vim-clang-format'
 
