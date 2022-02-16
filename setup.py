@@ -3,7 +3,7 @@
 from lib import ConfigElement, Package
 
 configElements = [
-    ConfigElement("bash", [".bash*"], ["bash"], [".bashrc_local"]),
+    ConfigElement("bash", [".bash*"], ["bash", "bash-completion"], [".bashrc_local"]),
     ConfigElement("vim", [".vimrc", ".vim/coc-settings.json",
                   ".vim/autoload/plug.vim"], ["vim", "nodejs", "npm"]),
     ConfigElement("git", [".gitconfig"], ["git"]),

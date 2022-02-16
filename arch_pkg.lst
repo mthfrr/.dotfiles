@@ -23,6 +23,7 @@ git
 htop
 i3
 kitty
+lib32-glibc
 linux-headers
 make
 man-db
