@@ -21,7 +21,10 @@ gcc
 gdb
 git
 htop
-i3
+i3-gaps
+i3blocks
+i3lock
+i3status
 kitty
 lib32-glibc
 linux-headers
@@ -31,6 +34,7 @@ neofetch
 networkmanager
 ninja
 nodejs
+noto-fonts-emoji
 npm
 openssh
 pavucontrol
