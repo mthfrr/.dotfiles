@@ -47,3 +47,5 @@ util-linux
 vim
 wget
 xorg
+zsh
+zsh-completions
