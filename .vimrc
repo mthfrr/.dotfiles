@@ -76,11 +76,17 @@ inoreabbrev #p #pragma
 inoreabbrev st struct
 
 " custom shotcuts
+command! -nargs=1 Silent
+\ | execute ':silent !'.<q-args>
+\ | execute ':redraw!'
+
+
 let mapleader="\<Space>"
 nnoremap <Space> <nop>
 nnoremap <Leader>f :Explore<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>m :Silent make<CR>
 
 " c braces setup
 inoremap {<CR> {<CR>}<Esc>ko
