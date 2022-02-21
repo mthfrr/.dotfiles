@@ -129,6 +129,7 @@ let g:coc_global_extensions = [
             \ 'coc-java',
             \ 'coc-cmake',
             \ 'coc-vimlsp',
+            \ 'coc-clangd',
             \ ]
 
 inoremap <silent><expr> <TAB>
