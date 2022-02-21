@@ -11,7 +11,6 @@ Plug 'tpope/vim-sensible'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ziglang/zig.vim'
 
 Plug 'rhysd/vim-clang-format'
 
@@ -19,7 +18,7 @@ call plug#end()
 
 " clang-format
 let g:clang_format#code_style="FILE"
-autocmd BufRead,BufNewFile *.c,*.h ClangFormatAutoEnable
+autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh ClangFormatAutoEnable
 
 " remove annoying beep
 set belloff=all
