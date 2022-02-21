@@ -2,6 +2,7 @@ alias ls='ls -h --color'
 alias lx='ls -lXB'         #  Sort by extension.
 alias lk='ls -lSr'         #  Sort by size, biggest last.
 
+alias l="ls -lv --group-directories-first"
 # The ubiquitous 'll': directories first, with alphanumeric sorting:
 alias ll="ls -lav --group-directories-first"
 alias lm='ll | less'        #  Pipe through 'more'
@@ -49,7 +50,7 @@ gitt() {
     echo Tag "$new_tag" ?
     read -r -p "Are you sure? [y/N] " response
     case "$response" in
-        [yY][eE][sS])
+        [yY][eE][sS]|[yY])
             git tag -a "$new_tag" -m "-"
             ;;
         *)
