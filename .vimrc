@@ -18,7 +18,7 @@ call plug#end()
 
 " clang-format
 let g:clang_format#code_style="FILE"
-autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh ClangFormatAutoEnable
+autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh,*.hxx ClangFormatAutoEnable
 
 " remove annoying beep
 set belloff=all
