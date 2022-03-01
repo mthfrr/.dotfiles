@@ -220,6 +220,5 @@ bindsym $mod+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name:
 for_window [class="^.*"] border pixel 0
 
 # gaps
-gaps inner 3
-# gaps outer -1
-
+gaps inner 5
+smart_gaps on
