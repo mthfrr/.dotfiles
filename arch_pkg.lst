@@ -47,6 +47,7 @@ ttf-fira-code
 util-linux
 vim
 wget
+which
 xorg
 zsh
 zsh-completions
