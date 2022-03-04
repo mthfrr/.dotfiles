@@ -183,8 +183,8 @@ bindsym $mod+d exec --no-startup-id dmenu_run -i -p '>' -nb '#272727' -nf '#ebdb
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status 
-        #-c /home/pol/.config/i3/i3_status.conf
+        status_command i3status
+        #status_command export SCRIPT_DIR="~/.config/i3blocks"; i3blocks 2> ~/err.log
         tray_output primary
         position bottom
         colors {
