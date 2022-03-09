@@ -178,6 +178,7 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+set updatetime=500
 
 " Symbol renaming.
 nmap <leader>r <Plug>(coc-rename)
