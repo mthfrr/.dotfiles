@@ -7,6 +7,7 @@ configElements = [
     ConfigElement("vim", [".vimrc", ".vim/coc-settings.json",
                   ".vim/autoload/plug.vim"], ["vim", "nodejs", "npm"]),
     ConfigElement("git", [".gitconfig"], ["git"]),
+    ConfigElement("clang-format", [".clang-format"]),
     ConfigElement("i3", [".config/i3/config", ".config/i3status/config"]),
     ConfigElement("kitty", [".config/kitty/kitty.conf"], ["kitty"]),
 ]
