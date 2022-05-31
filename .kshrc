@@ -43,8 +43,8 @@ case "$-" in
 
 	PROMPT="$USER:!$PS1S"
 	#PROMPT="<$USER@$HOST:!>$PS1S"
-	PPROMPT='$USER:$PWD:!'"$PS1S"
-	#PPROMPT='<$USER@$HOST:$PWD:!>'"$PS1S"
+	#PPROMPT='$USER:$PWD:!'"$PS1S"
+	PPROMPT='$USER@$HOST $PWD '"$PS1S"
 	PS1=$PPROMPT
 	# $TTY is the tty we logged in on,
 	# $tty is that which we are in now (might by pty)
@@ -54,8 +54,6 @@ case "$-" in
 	# $console is the system console device
 	console=$(sysctl kern.consdev)
 	console=${console#*=}
-
-	set -o emacs
 
 	alias ls='ls -F'
 	alias h='fc -l | more'
@@ -78,7 +76,7 @@ case "$-" in
 	*)	;;
 	esac
 	# do we want window decorations?
-	if [[ -n $ILS ]]; then
+	if false; then
 		function ilabel { print -n "${ILS}$*${ILE}">/dev/tty; }
 		function label { print -n "${WLS}$*${WLE}">/dev/tty; }
 
@@ -115,33 +113,30 @@ case "$-" in
 	alias df='df -k'
 	alias du='du -k'
 	alias rsize='eval $(resize)'
+
+    alias ls='ls -h'
+    alias lx='ls -lXB'         #  Sort by extension.
+    alias lk='ls -lSr'         #  Sort by size, biggest last.
+
+    alias l="ls -l"
+    alias ll="ls -la"
+    alias lr='ll -R'           #  Recursive ls.
+    alias la='ll -A'           #  Show hidden files.
+
+    alias cf='clang-format --style=FILE $(find . -type f -name "*.[ch]")'
+
+    alias tree='tree -C'
+    alias grep='grep --color=auto'
+    alias egrep='egrep --color=auto'
+
+    # git alias
+    alias gita="git add"
+    alias gitu="git add -u"
+    alias gits="git status"
+    alias gitc="git commit -m "
+    alias gitp="git push --follow-tags"
+    alias gitl="git log -10 --oneline --graph"
 ;;
 *)	# non-interactive
 ;;
 esac
-
-alias ls='ls -h'
-alias lx='ls -lXB'         #  Sort by extension.
-alias lk='ls -lSr'         #  Sort by size, biggest last.
-
-alias l="ls -l"
-# The ubiquitous 'll': directories first, with alphanumeric sorting:
-alias ll="ls -la"
-alias lr='ll -R'           #  Recursive ls.
-alias la='ll -A'           #  Show hidden files.
-
-alias cf='clang-format --style=FILE $(find . -type f -name "*.[ch]")'
-
-alias tree='tree -C'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-
-# git alias
-alias gita="git add"
-alias gitu="git add -u"
-alias gits="git status"
-#alias gits="git status --short | grep '^[MARCD]'"
-alias gitc="git commit -m "
-#alias gitt="git tag -a "
-alias gitp="git push --follow-tags"
-alias gitl="git log -10 --oneline --graph"
