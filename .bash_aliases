@@ -76,19 +76,19 @@ git-tag-all() {
 }
 
 gituctp() {
-    if [ $# -eq 1 ]; then
+    if [ $# -ne 0 ]; then
         tag=exercises-${PWD##*/}
-        gituctp_manual_tag $tag "$1"
-    elif [ $# -eq 2 ]; then
-        gituctp_manual_tag "$1" "$2"
+        cmt_msg="$*"
+        gituctp_manual_tag "$tag" "$cmt_msg"
     else
-        echo "Usage: $0 [tag-base-name] commit-msg" && return 1
+        echo "Usage: $0 commit-msg" && return 1
     fi
 }
 
 gituctp_manual_tag() {
-    [ $# -ne 2 ] && echo "Usage: $0 [tag-name-base] [commit-msg]" && return 1
+    [ $# -lt 2 ] && echo "Usage: $0 [tag-name-base] [commit-msg]" && return 1
     gitu
+    echo "$2"
     yes | gitct "$1" "$2"
     gitp
 }

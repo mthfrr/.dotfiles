@@ -188,7 +188,7 @@ bar {
         status_command i3status
         #status_command export SCRIPT_DIR="~/.config/i3blocks"; i3blocks 2> ~/err.log
 
-        position top
+        position bottom
 
         # small app icons
         tray_output primary
