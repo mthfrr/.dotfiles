@@ -9,10 +9,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-sensible'
 
-Plug 'sheerun/vim-polyglot'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/vim-clang-format'
 
 call plug#end()
 
@@ -36,11 +36,13 @@ let &t_EI = "\<esc>[2 q"  " default cursor solid block otherwise
 
 " mouse
 set mouse=a
+set ttymouse=sgr " wide monitor mouse fix
 
 set number
 set cc=80
 
 " indent
+filetype plugin indent on
 set autoindent
 set smartindent
 set expandtab
@@ -70,6 +72,7 @@ nnoremap <Space> <nop>
 nnoremap <Leader>f :Explore<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>m :Silent make<CR>
 
 " Make
 autocmd Filetype make call SetMakeOptions()
@@ -78,7 +81,7 @@ function SetMakeOptions()
 endfunction
 
 " C
-autocmd BufRead,BufNewFile *.c,*.h call SetCOptions()
+autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh,*.hhx call SetCOptions()
 function SetCOptions()
     inoreabbrev #i #include
     inoreabbrev #d #define
@@ -88,6 +91,10 @@ function SetCOptions()
 
     setlocal comments=s:/**,mb:**,ex:*/,s:/*,mb:**,ex:*/
     setlocal cinoptions+=:0 " case statement indent fix
+
+    " clang-format
+    let g:clang_format#code_style="FILE"
+    autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh,*.hxx ClangFormatAutoEnable
 endfunction
 
 autocmd BufRead,BufNewFile c,python,java,javascript call SetTablenOptions()
@@ -97,6 +104,9 @@ function SetTablenOptions()
     setlocal softtabstop=4
 endfunction
 
+" reduce latency when escaping
+set ttimeoutlen=10
+
 " ### Plugins ###
 
 " airline
@@ -105,7 +115,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " CoC
 set hidden
-set cmdheight=2 " recomand 2
+set cmdheight=1 " recomand 2
 set shortmess+=c
 
 
@@ -117,9 +127,8 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-css',
             \ 'coc-pyright',
-            \ 'coc-java',
-            \ 'coc-cmake',
             \ 'coc-vimlsp',
+            \ 'coc-clangd'
             \ ]
 
 inoremap <silent><expr> <TAB>

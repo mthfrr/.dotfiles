@@ -23,6 +23,10 @@ alias gitc="git commit -m "
 alias gitp="git push --follow-tags"
 alias gitl="git log -10 --oneline --graph"
 
+
+# shell
+alias vim=nvim
+
 mktouch() { mkdir -p "$(dirname "$1")" && touch "$1"; }
 
 calc_new_tag() {
