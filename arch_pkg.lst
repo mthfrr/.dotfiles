@@ -31,6 +31,7 @@ linux-headers
 make
 man-db
 neofetch
+neovim
 networkmanager
 ninja
 nodejs
