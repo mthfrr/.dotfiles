@@ -1,0 +1,53 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+}
+
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "memory"
+order += "load"
+order += "disk /"
+order += "volume master"
+order += "tztime local"
+
+
+cpu_usage {
+    format = "⚙️ %usage"
+    degraded_threshold = 75
+    max_threshold = 95
+}
+
+cpu_temperature 0 {
+    format = "🌡️%degrees°C"
+    max_threshold = 80
+    path = "/sys/class/hwmon/hwmon2/temp1_input"
+}
+
+memory {
+    memory_used_method = memavailable
+    format = "🐏 %percentage_used"
+    threshold_degraded = 20%
+    threshold_critical = 5%
+}
+
+load {
+    format = "💦 %1min %5min %15min"
+    max_threshold = 2
+}
+
+disk "/" {
+    format = "📁 %free"
+}
+
+tztime local {
+    format = "%Y/%m/%d %H:%M:%S"
+}
+
+volume master {
+    format = "🔊 %volume"
+    format_muted = "🔇 %volume"
+    color_degraded ='#bbab82'
+    device = "default"
+}
