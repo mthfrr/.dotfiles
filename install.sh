@@ -6,7 +6,7 @@ set -e
 . ./install_functions.sh
 . ./zsh/zshenv
 
-warn "Warning, current configuration files will be overwritten. (y/n)"
+dot_warn "Warning, current configuration files will be overwritten. (y/n)"
 read -r -n 1 -s answer
 [ "$answer" != "y" ] && echo Abort && exit 0
 

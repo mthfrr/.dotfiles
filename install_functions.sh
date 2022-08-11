@@ -1,10 +1,14 @@
 #!/bin/sh
 
-warn () {
+dot_info () {
+    printf "$light_gray%s$default\n" "$@"
+}
+
+dot_warn () {
     printf "$yellow%s$default\n" "$@"
 }
 
-error () {
+dot_error () {
     printf "$red%s$default\n" "$@"
 }
 
