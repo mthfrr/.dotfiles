@@ -6,7 +6,7 @@ if [ ! -d "$VIMCONFIG" ]
     mkdir "$VIMCONFIG"
 
     # install neovim plugin manager
-    curl -fLo ~/.dotfiles/nvim/autoload/plug.vim --create-dirs \
+    curl -fLo "$VIMCONFIG"/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
