@@ -11,6 +11,7 @@ Plug 'tpope/vim-sensible'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ziglang/zig.vim'
 
 Plug 'rhysd/vim-clang-format'
 
@@ -73,6 +74,11 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>m :Silent make<CR>
 
+" reload_config
+function ReloadConfig()
+  source "$VIMCONFIG/init.vim"
+endfunction
+
 " Make
 autocmd Filetype make call SetMakeOptions()
 function SetMakeOptions()
@@ -96,7 +102,7 @@ function SetCOptions()
     autocmd BufRead,BufNewFile *.c,*.h,*.cc,*.hh,*.hxx ClangFormatAutoEnable
 endfunction
 
-autocmd BufRead,BufNewFile c,python,java,javascript call SetTablenOptions()
+autocmd FileType c,python,java,javascript call SetTablenOptions()
 function SetTablenOptions()
     setlocal shiftwidth=4
     setlocal tabstop=4
@@ -123,14 +129,15 @@ set updatetime=300
 
 " let g:coc_confing_home = '~/path/to/coc-settings.json'
 let g:coc_global_extensions = [
-            \ 'coc-prettier',
-            \ 'coc-json',
-            \ 'coc-sh',
-            \ 'coc-html',
+            \ 'coc-clangd',
             \ 'coc-css',
+            \ 'coc-html',
+            \ 'coc-json',
+            \ 'coc-prettier',
             \ 'coc-pyright',
+            \ 'coc-sh',
             \ 'coc-vimlsp',
-            \ 'coc-clangd'
+            \ 'coc-zig',
             \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
