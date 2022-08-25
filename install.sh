@@ -19,4 +19,5 @@ dot_is_installed clang-format && dot_install clang-format
 dot_is_installed nvim         && dot_install nvim
 dot_is_installed git          && dot_install git
 dot_is_installed i3           && dot_install i3
+dot_is_installed i3status     && dot_install i3status
 dot_is_installed kitty        && dot_install kitty
