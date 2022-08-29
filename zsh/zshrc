@@ -18,15 +18,17 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
+#bindkey -a '^[[3~' vi-delete-char
+#bindkey "^[[1;5D" backward-word
+#bindkey "^[[1;5C" forward-word
+
+source $XDG_CONFIG_HOME/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 # enable autocompletion
 autoload -Uz compinit; compinit; _comp_options+=(globdots);
 
 # source aliases
 . $XDG_CONFIG_HOME/aliases.sh
-
-# fix ctrl+arrow
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 
 # prompt
 # . $ZDOTDIR/prompt.sh

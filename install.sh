@@ -2,6 +2,9 @@
 
 set -e
 
+git pull
+git submodule update --init
+
 . ./colors.sh
 . ./install_functions.sh
 . ./zsh/zshenv
