@@ -2,12 +2,17 @@
 
 set -e
 
-git pull
-git submodule update --init
 
 . ./colors.sh
 . ./install_functions.sh
 . ./zsh/zshenv
+
+dot_info "Pull last commits"
+git pull
+dot_info "Pull submodules"
+git submodule update --init
+dot_info "Update submodules"
+git submodule foreach git pull origin master
 
 dot_warn "Warning, current configuration files will be overwritten. (y/n)"
 read -r -n 1 -s answer
@@ -17,7 +22,6 @@ INSTALL="$DOTFILES"/install
 
 # Install the configuration files
 dot_install zsh
-dot_install zsh-vi-mode
 
 dot_is_installed clang-format && dot_install clang-format
 dot_is_installed nvim         && dot_install nvim
