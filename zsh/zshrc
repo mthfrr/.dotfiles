@@ -22,7 +22,7 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 #bindkey "^[[1;5D" backward-word
 #bindkey "^[[1;5C" forward-word
 
-source $XDG_CONFIG_HOME/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source $DOTFILES/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # enable autocompletion
 autoload -Uz compinit; compinit; _comp_options+=(globdots);

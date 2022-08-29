@@ -12,7 +12,6 @@ ln -sf "$DOTFILES/zsh/p10k.zsh" "$ZDOTDIR/.p10k.zsh"
 ln -sf "$DOTFILES/aliases.sh" "$XDG_CONFIG_HOME/aliases.sh"
 
 # https://github.com/jeffreytse/zsh-vi-mode
-ln -sf "$DOTFILES/zsh-vi-mode" "$XDG_CONFIG_HOME/zsh-vi-mode"
 cd zsh-vi-mode
 git pull
 cd -

@@ -17,6 +17,7 @@ INSTALL="$DOTFILES"/install
 
 # Install the configuration files
 dot_install zsh
+dot_install zsh-vi-mode
 
 dot_is_installed clang-format && dot_install clang-format
 dot_is_installed nvim         && dot_install nvim
