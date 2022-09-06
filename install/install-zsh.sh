@@ -2,8 +2,6 @@
 
 mkdir -p "$ZDOTDIR"
 
-dot_info "yay -S --noconfirm zsh-theme-powerlevel10k-git"
-
 ln -sf "$DOTFILES/zsh/zshenv" "$HOME/.zshenv"
 
 ln -sf "$DOTFILES/zsh/zshrc" "$ZDOTDIR/.zshrc"
