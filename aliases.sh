@@ -12,6 +12,8 @@ alias cf='clang-format --style=FILE $(find . -type f -name "*.[ch]")'
 
 alias j='jobs -l'
 
+alias sshag='eval $(ssh-agent -s -t 30)'
+
 alias tree='tree -C'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
