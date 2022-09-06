@@ -1,0 +1,6 @@
+AddKeysToAgent yes
+
+Host paq
+    HostName 192.168.1.91
+    User pol
+    Port 22
