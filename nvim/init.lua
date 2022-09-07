@@ -237,7 +237,14 @@ require('nvim-treesitter.configs').setup({
     'tsx',
     'lua',
     'css',
-    'json'
+    'json',
+    'yaml',
+    'toml',
+    'python',
+    'c',
+    'cpp',
+    'rust',
+    'zig'
   },
 })
 
@@ -433,10 +440,15 @@ require('mason').setup({
 -- See :help mason-lspconfig-settings
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'tsserver',
-    'eslint',
-    'html',
-    'cssls'
+    'bashls',
+    'clangd',
+    'jsonls',
+    'sumneko_lua',
+    'pyright',
+    'rust_analyzer',
+    'taplo',
+    'zls',
+    'yamlls'
   }
 })
 
@@ -484,7 +496,7 @@ sign({name = 'DiagnosticSignInfo', text = ''})
 
 -- See :help vim.diagnostic.config()
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   severity_sort = true,
   float = {
     border = 'rounded',
@@ -555,5 +567,16 @@ require('mason-lspconfig').setup_handlers({
         }
       }
     })
+  end,
+  ['sumneko_lua'] = function ()
+    lspconfig.sumneko_lua.setup {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { 'vim' }
+          }
+        }
+      }
+    }
   end
 })
