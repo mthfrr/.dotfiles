@@ -139,6 +139,9 @@ require('packer').startup(function(use)
   use {'L3MON4D3/LuaSnip'}
   use {'rafamadriz/friendly-snippets'}
 
+  -- Clang Format
+  use {'rhysd/vim-clang-format'}
+
   if install_plugins then
     require('packer').sync()
   end
@@ -165,6 +168,13 @@ end
 vim.opt.termguicolors = true
 vim.cmd('colorscheme onedark')
 
+
+---
+-- Vim Clang Format
+---
+vim.g['clang_format#detect_style_file'] = 1
+vim.g['clang_format#auto_format'] = 1 -- format on save
+vim.g['clang_format#enable_fallback_style'] = 0 -- vim-clang-format does nothing when .clang-format is not found
 
 ---
 -- vim-bbye
@@ -295,6 +305,7 @@ vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+vim.keymap.set('n', '<leader>s', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
 
 require('telescope').load_extension('fzf')
 
