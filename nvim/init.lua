@@ -16,6 +16,8 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.signcolumn = 'yes'
 vim.opt.belloff = 'all'
+vim.opt.autowrite = true
+vim.opt.autoread = true
 
 -- Space as leader key
 vim.g.mapleader = ' '
