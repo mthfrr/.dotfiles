@@ -23,16 +23,17 @@ vim.opt.autoread = true
 vim.g.mapleader = ' '
 
 -- Shortcuts
-vim.keymap.set({'n', 'x', 'o'}, '<leader>h', '^')
-vim.keymap.set({'n', 'x', 'o'}, '<leader>l', 'g_')
+vim.keymap.set({ 'n', 'x', 'o' }, '<leader>h', '^')
+vim.keymap.set({ 'n', 'x', 'o' }, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
+vim.keymap.set('n', '<leader>m', ':silent make doc|redraw!|cc<CR>', {noremap = true, silent = true})
 
 -- Basic clipboard interaction
-vim.keymap.set({'n', 'x'}, 'cp', '"+y')
-vim.keymap.set({'n', 'x'}, 'cv', '"+p')
+vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
+vim.keymap.set({ 'n', 'x' }, 'cv', '"+p')
 
 -- Delete text
-vim.keymap.set({'n', 'x'}, 'x', '"_x')
+vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 
 -- Commands
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
@@ -50,18 +51,18 @@ vim.api.nvim_create_user_command(
   {}
 )
 
-local group = vim.api.nvim_create_augroup('user_cmds', {clear = true})
+local group = vim.api.nvim_create_augroup('user_cmds', { clear = true })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight on yank',
   group = group,
   callback = function()
-    vim.highlight.on_yank({higroup = 'Visual', timeout = 200})
+    vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
   end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'help', 'man'},
+  pattern = { 'help', 'man' },
   group = group,
   command = 'nnoremap <buffer> q <cmd>quit<cr>'
 })
@@ -77,7 +78,7 @@ local install_plugins = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   print('Installing packer...')
   local packer_url = 'https://github.com/wbthomason/packer.nvim'
-  vim.fn.system({'git', 'clone', '--depth', '1', packer_url, install_path})
+  vim.fn.system({ 'git', 'clone', '--depth', '1', packer_url, install_path })
   print('Done.')
 
   vim.cmd('packadd packer.nvim')
@@ -86,63 +87,63 @@ end
 
 require('packer').startup(function(use)
   -- Plugin manager
-  use {'wbthomason/packer.nvim'}
+  use { 'wbthomason/packer.nvim' }
 
   -- Theming
-  use {'folke/tokyonight.nvim'}
-  use {'joshdick/onedark.vim'}
-  use {'tanvirtin/monokai.nvim'}
-  use {'lunarvim/darkplus.nvim'}
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'nvim-lualine/lualine.nvim'}
-  use {'akinsho/bufferline.nvim'}
-  use {'lukas-reineke/indent-blankline.nvim'}
+  use { 'folke/tokyonight.nvim' }
+  use { 'joshdick/onedark.vim' }
+  use { 'tanvirtin/monokai.nvim' }
+  use { 'lunarvim/darkplus.nvim' }
+  use { 'kyazdani42/nvim-web-devicons' }
+  use { 'nvim-lualine/lualine.nvim' }
+  use { 'akinsho/bufferline.nvim' }
+  use { 'lukas-reineke/indent-blankline.nvim' }
 
   -- File explorer
-  use {'kyazdani42/nvim-tree.lua'}
+  use { 'kyazdani42/nvim-tree.lua' }
 
   -- Fuzzy finder
-  use {'nvim-telescope/telescope.nvim'}
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  use { 'nvim-telescope/telescope.nvim' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Git
-  use {'lewis6991/gitsigns.nvim'}
-  use {'tpope/vim-fugitive'}
+  use { 'lewis6991/gitsigns.nvim' }
+  use { 'tpope/vim-fugitive' }
 
   -- Code manipulation
-  use {'nvim-treesitter/nvim-treesitter'}
-  use {'nvim-treesitter/nvim-treesitter-textobjects'}
-  use {'numToStr/Comment.nvim'}
-  use {'tpope/vim-surround'}
-  use {'wellle/targets.vim'}
-  use {'tpope/vim-repeat'}
+  use { 'nvim-treesitter/nvim-treesitter' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'numToStr/Comment.nvim' }
+  use { 'tpope/vim-surround' }
+  use { 'wellle/targets.vim' }
+  use { 'tpope/vim-repeat' }
 
   -- Utilities
-  use {'moll/vim-bbye'}
-  use {'nvim-lua/plenary.nvim'}
-  use {'editorconfig/editorconfig-vim'}
-  use {'akinsho/toggleterm.nvim'}
-  use {'tpope/vim-eunuch'}
-  use {'tpope/vim-speeddating'}
+  use { 'moll/vim-bbye' }
+  use { 'nvim-lua/plenary.nvim' }
+  use { 'editorconfig/editorconfig-vim' }
+  use { 'akinsho/toggleterm.nvim' }
+  use { 'tpope/vim-eunuch' }
+  use { 'tpope/vim-speeddating' }
 
   -- LSP support
-  use {'neovim/nvim-lspconfig'}
-  use {'williamboman/mason.nvim'}
-  use {'williamboman/mason-lspconfig.nvim'}
+  use { 'neovim/nvim-lspconfig' }
+  use { 'williamboman/mason.nvim' }
+  use { 'williamboman/mason-lspconfig.nvim' }
 
   -- Autocomplete
-  use {'hrsh7th/nvim-cmp'}
-  use {'hrsh7th/cmp-buffer'}
-  use {'hrsh7th/cmp-path'}
-  use {'saadparwaiz1/cmp_luasnip'}
-  use {'hrsh7th/cmp-nvim-lsp'}
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
 
   -- Snippets
-  use {'L3MON4D3/LuaSnip'}
-  use {'rafamadriz/friendly-snippets'}
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'rafamadriz/friendly-snippets' }
 
-  -- Clang Format
-  use {'rhysd/vim-clang-format'}
+  -- Format
+  use { 'rhysd/vim-clang-format' }
 
   if install_plugins then
     require('packer').sync()
@@ -175,6 +176,7 @@ vim.cmd('colorscheme onedark')
 -- Vim Clang Format
 ---
 vim.g['clang_format#detect_style_file'] = 1
+vim.g['clang_format#auto_formatexpr'] = { "c", "cpp" }
 vim.g['clang_format#auto_format'] = 1 -- format on save
 vim.g['clang_format#enable_fallback_style'] = 0 -- vim-clang-format does nothing when .clang-format is not found
 
@@ -208,7 +210,7 @@ require('bufferline').setup({
   options = {
     mode = 'buffers',
     offsets = {
-      {filetype = 'NvimTree'}
+      { filetype = 'NvimTree' }
     },
   },
   -- :help bufferline-highlights
@@ -217,7 +219,7 @@ require('bufferline').setup({
       italic = false
     },
     indicator_selected = {
-      fg = {attribute = 'fg', highlight = 'Function'},
+      fg = { attribute = 'fg', highlight = 'Function' },
       italic = false
     }
   }
@@ -288,11 +290,11 @@ require('indent_blankline').setup({
 -- See :help gitsigns-usage
 require('gitsigns').setup({
   signs = {
-    add = {text = '▎'},
-    change = {text = '▎'},
-    delete = {text = '➤'},
-    topdelete = {text = '➤'},
-    changedelete = {text = '▎'},
+    add = { text = '▎' },
+    change = { text = '▎' },
+    delete = { text = '➤' },
+    topdelete = { text = '➤' },
+    changedelete = { text = '▎' },
   }
 })
 
@@ -319,7 +321,7 @@ require('nvim-tree').setup({
   hijack_cursor = false,
   on_attach = function(bufnr)
     local bufmap = function(lhs, rhs, desc)
-      vim.keymap.set('n', lhs, rhs, {buffer = bufnr, desc = desc})
+      vim.keymap.set('n', lhs, rhs, { buffer = bufnr, desc = desc })
     end
 
     -- :help nvim-tree.api
@@ -358,7 +360,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 -- See :help cmp-config
 cmp.setup({
@@ -368,16 +370,16 @@ cmp.setup({
     end
   },
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 2},
-    {name = 'buffer', keyword_length = 2},
-    {name = 'luasnip', keyword_length = 1},
+    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 2 },
+    { name = 'luasnip', keyword_length = 1 },
   },
   window = {
     documentation = cmp.config.window.bordered()
   },
   formatting = {
-    fields = {'menu', 'abbr', 'kind'},
+    fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
       local menu_icon = {
         nvim_lsp = 'λ',
@@ -402,7 +404,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
     ['<C-d>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
@@ -410,7 +412,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<C-b>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
@@ -418,7 +420,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<Tab>'] = cmp.mapping(function(fallback)
       local col = vim.fn.col('.') - 1
@@ -430,7 +432,7 @@ cmp.setup({
       else
         cmp.complete()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -438,7 +440,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
   },
 })
 
@@ -448,7 +450,7 @@ cmp.setup({
 ---
 -- See :help mason-settings
 require('mason').setup({
-  ui = {border = 'rounded'}
+  ui = { border = 'rounded' }
 })
 
 -- See :help mason-lspconfig-settings
@@ -462,10 +464,11 @@ require('mason-lspconfig').setup({
     'rust_analyzer',
     'taplo',
     'zls',
-    'yamlls'
+    'yamlls',
+    'cssmodules_ls',
+    'html'
   }
 })
-
 
 ---
 -- LSP config
@@ -479,7 +482,7 @@ local lsp_defaults = {
     vim.lsp.protocol.make_client_capabilities()
   ),
   on_attach = function(client, bufnr)
-    vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
+    vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end
 }
 
@@ -503,10 +506,10 @@ local sign = function(opts)
   })
 end
 
-sign({name = 'DiagnosticSignError', text = '✘'})
-sign({name = 'DiagnosticSignWarn', text = '▲'})
-sign({name = 'DiagnosticSignHint', text = '⚑'})
-sign({name = 'DiagnosticSignInfo', text = ''})
+sign({ name = 'DiagnosticSignError', text = '✘' })
+sign({ name = 'DiagnosticSignWarn', text = '▲' })
+sign({ name = 'DiagnosticSignHint', text = '⚑' })
+sign({ name = 'DiagnosticSignInfo', text = '' })
 
 -- See :help vim.diagnostic.config()
 vim.diagnostic.config({
@@ -522,12 +525,12 @@ vim.diagnostic.config({
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
-  {border = 'rounded'}
+  { border = 'rounded' }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
-  {border = 'rounded'}
+  { border = 'rounded' }
 )
 
 ---
@@ -538,7 +541,7 @@ vim.api.nvim_create_autocmd('User', {
   desc = 'LSP actions',
   callback = function()
     local bufmap = function(mode, lhs, rhs)
-      local opts = {buffer = true}
+      local opts = { buffer = true }
       vim.keymap.set(mode, lhs, rhs, opts)
     end
 
@@ -573,16 +576,7 @@ end
 -- See :help mason-lspconfig-dynamic-server-setup
 require('mason-lspconfig').setup_handlers({
   default_handler,
-  ['tsserver'] = function()
-    lspconfig.tsserver.setup({
-      settings = {
-        completions = {
-          completeFunctionCalls = true
-        }
-      }
-    })
-  end,
-  ['sumneko_lua'] = function ()
+  ['sumneko_lua'] = function()
     lspconfig.sumneko_lua.setup {
       settings = {
         Lua = {
