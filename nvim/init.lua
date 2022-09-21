@@ -26,7 +26,7 @@ vim.g.mapleader = ' '
 vim.keymap.set({ 'n', 'x', 'o' }, '<leader>h', '^')
 vim.keymap.set({ 'n', 'x', 'o' }, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
-vim.keymap.set('n', '<leader>m', ':silent make doc|redraw!|cc<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>m', ':silent make|redraw!|cc<CR>', {noremap = true, silent = true})
 
 -- Basic clipboard interaction
 vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
