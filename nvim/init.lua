@@ -61,6 +61,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+local file_read = vim.api.nvim_create_augroup('file_read', { clear = true })
+vim.api.nvim_create_autocmd({'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI', 'VimResume'}, {
+  desc = 'Reload file if changed on disk',
+  group = file_read,
+  command = 'if mode() != \'c\' | checktime | endif'
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'help', 'man' },
   group = group,
