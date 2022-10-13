@@ -40,6 +40,13 @@ vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 vim.keymap.set('n', '<leader>bq', '<cmd>bdelete<cr>')
 vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>')
 
+-- Typo
+vim.api.nnoreabbrev({'<buffer>', 'Q', 'q'})
+vim.api.nnoreabbrev({'<buffer>', 'W', 'w'})
+vim.api.nnoreabbrev({'<buffer>', 'Wa', 'wa'})
+vim.api.nnoreabbrev({'<buffer>', 'WA', 'wa'})
+vim.api.nnoreabbrev({'<buffer>', 'Wq', 'wq'})
+vim.api.nnoreabbrev({'<buffer>', 'WQ', 'wq'})
 
 -- ========================================================================== --
 -- ==                               COMMANDS                               == --
