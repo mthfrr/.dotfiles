@@ -480,13 +480,15 @@ require('mason-lspconfig').setup({
 -- LSP config
 ---
 -- See :help lspconfig-global-defaults
+capa = require('cmp_nvim_lsp').default_capabilities
+if capa == nil then
+  capa = require('cmp_nvim_lsp').update_capabilities
+end
 local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').default_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
+  capabilities = capa(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
   end
