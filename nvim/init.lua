@@ -25,6 +25,7 @@ vim.keymap.set({ 'n', 'x', 'o' }, '<leader>h', '^')
 vim.keymap.set({ 'n', 'x', 'o' }, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 vim.keymap.set('n', '<leader>m', ':silent make|redraw!|cc<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', '<leader>n', ':silent exec "!ninja"<CR>', {noremap = true, silent = true})
 
 -- Basic clipboard interaction
 vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
@@ -64,7 +65,7 @@ local file_read = vim.api.nvim_create_augroup('file_read', { clear = true })
 vim.api.nvim_create_autocmd({'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI', 'VimResume'}, {
   desc = 'Reload file if changed on disk',
   group = file_read,
-  command = 'if mode() != \'c\' | checktime | endif'
+  command = 'if mode() != \'c\' |checktime|redraw!|  endif'
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -181,7 +182,7 @@ vim.cmd('colorscheme onedark')
 -- Vim Clang Format
 ---
 vim.g['clang_format#detect_style_file'] = 1
-vim.g['clang_format#auto_formatexpr'] = { "c", "cpp" }
+vim.g['clang_format#auto_formatexpr'] = "['c', 'cpp']"
 vim.g['clang_format#auto_format'] = 1 -- format on save
 vim.g['clang_format#enable_fallback_style'] = 0 -- vim-clang-format does nothing when .clang-format is not found
 
@@ -483,7 +484,7 @@ local lsp_defaults = {
   flags = {
     debounce_text_changes = 150,
   },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
+  capabilities = require('cmp_nvim_lsp').default_capabilities(
     vim.lsp.protocol.make_client_capabilities()
   ),
   on_attach = function(client, bufnr)
