@@ -6,7 +6,7 @@ vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
 vim.opt.tabstop = 2
@@ -16,6 +16,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.belloff = 'all'
 vim.opt.autowrite = true
 vim.opt.autoread = true
+vim.opt.updatetime = 2000
 
 -- Space as leader key
 vim.g.mapleader = ' '
@@ -73,6 +74,7 @@ vim.api.nvim_create_autocmd('FileType', {
   group = group,
   command = 'nnoremap <buffer> q <cmd>quit<cr>'
 })
+
 
 -- ========================================================================== --
 -- ==                               PLUGINS                                == --
@@ -377,7 +379,7 @@ cmp.setup({
   },
   sources = {
     { name = 'path' },
-    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'nvim_lsp', keyword_length = 1 },
     { name = 'buffer', keyword_length = 2 },
     { name = 'luasnip', keyword_length = 1 },
   },
@@ -480,7 +482,7 @@ require('mason-lspconfig').setup({
 -- LSP config
 ---
 -- See :help lspconfig-global-defaults
-capa = require('cmp_nvim_lsp').default_capabilities
+local capa = require('cmp_nvim_lsp').default_capabilities
 if capa == nil then
   capa = require('cmp_nvim_lsp').update_capabilities
 end
@@ -491,6 +493,30 @@ local lsp_defaults = {
   capabilities = capa(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, bufnr)
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+
+    if client.server_capabilities.documentHighlightProvider then
+        -- vim.cmd[[hi LspReferenceText cterm=standout gui=standout
+-- hi LspReferenceRead cterm=standout gui=standout
+-- hi LspReferenceWrite cterm=standout gui=standout]]
+        vim.cmd[[hi link LspReferenceText Search
+hi link LspReferenceRead Search
+hi link LspReferenceWrite Search]]
+        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+        vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+        vim.api.nvim_create_autocmd({"CursorHold"}, {
+            callback = vim.lsp.buf.document_highlight,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Document Highlight",
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = vim.lsp.buf.clear_references,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Clear All the References",
+        })
+    end
+
   end
 }
 
