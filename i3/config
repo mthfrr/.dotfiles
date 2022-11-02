@@ -45,6 +45,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Media player controls
+bindsym XF86AudioPlay exec mediactl PlayPause
+bindsym XF86AudioNext exec mediactl Next
+bindsym XF86AudioPrev exec mediactl Previous
+bindsym XF86AudioStop exec mediactl Stop
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
