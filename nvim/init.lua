@@ -458,7 +458,8 @@ cmp.setup({
 ---
 -- See :help mason-settings
 require('mason').setup({
-  ui = { border = 'rounded' }
+  ui = { border = 'rounded' },
+  log_level = vim.log.levels.DEBUG,
 })
 
 -- See :help mason-lspconfig-settings
