@@ -470,12 +470,12 @@ require('mason-lspconfig').setup({
     'jsonls',
     'sumneko_lua',
     'pyright',
-    'rust_analyzer',
     'taplo',
-    'zls',
     'yamlls',
     'cssmodules_ls',
-    'html'
+    'html',
+    -- 'rust_analyzer',
+    -- 'zls',
   }
 })
 
@@ -607,7 +607,6 @@ local default_handler = function(server)
   -- See :help lspconfig-setup
   lspconfig[server].setup({})
 end
-
 -- See :help mason-lspconfig-dynamic-server-setup
 require('mason-lspconfig').setup_handlers({
   default_handler,
@@ -616,10 +615,23 @@ require('mason-lspconfig').setup_handlers({
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim' }
+            globals = { 'vim' },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
           }
         }
       }
+    }
+  end,
+  ['clangd'] = function ()
+    lspconfig.clangd.setup {
+      cmd = {"clangd", "--header-insertion=never"}
     }
   end
 })
