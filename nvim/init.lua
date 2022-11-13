@@ -256,9 +256,6 @@ require('nvim-treesitter.configs').setup({
     },
   },
   ensure_installed = {
-    'javascript',
-    'typescript',
-    'tsx',
     'lua',
     'css',
     'json',
@@ -267,8 +264,6 @@ require('nvim-treesitter.configs').setup({
     'python',
     'c',
     'cpp',
-    'rust',
-    'zig'
   },
 })
 
@@ -380,7 +375,7 @@ cmp.setup({
   sources = {
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 1 },
-    { name = 'buffer', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 1 },
     { name = 'luasnip', keyword_length = 1 },
   },
   window = {
@@ -474,8 +469,6 @@ require('mason-lspconfig').setup({
     'yamlls',
     'cssmodules_ls',
     'html',
-    -- 'rust_analyzer',
-    -- 'zls',
   }
 })
 
@@ -496,9 +489,6 @@ local lsp_defaults = {
     vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
 
     if client.server_capabilities.documentHighlightProvider then
-        -- vim.cmd[[hi LspReferenceText cterm=standout gui=standout
--- hi LspReferenceRead cterm=standout gui=standout
--- hi LspReferenceWrite cterm=standout gui=standout]]
         vim.cmd[[hi link LspReferenceText Search
 hi link LspReferenceRead Search
 hi link LspReferenceWrite Search]]
