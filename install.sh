@@ -18,7 +18,7 @@ INSTALL="$DOTFILES"/install
 
 if [ $# -ne 0 ]; then
 
-  for p in $@; do
+  for p in "$@"; do
     dot_is_installed "$p" && dot_install "$p"
   done
 

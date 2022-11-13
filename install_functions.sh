@@ -18,6 +18,6 @@ dot_install () {
     . "$INSTALL"/install-"$1".sh
 }
 
-function dot_is_installed() {
-    command -v $1 >/dev/null
+dot_is_installed() {
+    command -v "$1" >/dev/null
 }
