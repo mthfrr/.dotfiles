@@ -2,7 +2,7 @@
 
 mkdir -p "$I3_CONFIG"
 
-if [ ! -f /usr/bin/medialctl ]; then
+if ! command -v "mediactl" > /dev/null; then
   wget -O /tmp/mediactl https://github.com/aaaaaaaalex/mediactl/releases/download/1.0.0/mediactl
   chmod +x /tmp/mediactl
   sudo mv /tmp/mediactl /usr/bin/mediactl
