@@ -144,8 +144,8 @@ require('packer').startup(function(use)
   use { 'hrsh7th/cmp-nvim-lsp' }
 
   -- Snippets
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'rafamadriz/friendly-snippets' }
+  use { 'L3MON4D3/LuaSnip'}
+  use { 'rafamadriz/friendly-snippets'}
 
   -- Format
   use { 'rhysd/vim-clang-format' }
@@ -352,6 +352,39 @@ require('toggleterm').setup({
 ---
 -- See :help luasnip-loaders
 require('luasnip.loaders.from_vscode').lazy_load()
+
+local _ls = require("luasnip")
+local snip = _ls.snippet
+local node = _ls.snippet_node
+local text = _ls.text_node
+local insert = _ls.insert_node
+local func = _ls.function_node
+local choice = _ls.choice_node
+local dynamicn = _ls.dynamic_node
+
+local gards = function() return vim.api.nvim_buf_get_name(0):match("^.+/(.+)%..+$"):upper() .. "_H" end
+
+_ls.add_snippets(nil, {
+    cpp = {
+        snip({
+            trig = "#ig",
+            namr = "Include Gards",
+            dscr = "Create include guards",
+        },
+        {
+          text({"#ifndef "}),
+          func(gards, {}),
+          text({"", "#define "}),
+          func(gards, {}),
+          text({"", "", ""}),
+          insert(0),
+          text({"", "", "#endif /* "}),
+          func(gards, {}),
+          text({" */"}),
+        }),
+    },
+})
+
 
 
 ---
