@@ -24,9 +24,6 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 source $DOTFILES/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-# enable autocompletion
-autoload -Uz compinit; compinit; _comp_options+=(globdots);
-
 # source aliases
 . $XDG_CONFIG_HOME/aliases.sh
 
@@ -36,3 +33,6 @@ source $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
+# enable autocompletion
+autoload -Uz compinit; compinit; _comp_options+=(globdots);

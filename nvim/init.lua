@@ -651,7 +651,8 @@ require('mason-lspconfig').setup_handlers({
   end,
   ['clangd'] = function ()
     lspconfig.clangd.setup {
-      cmd = {"clangd", "--header-insertion=never"}
+      cmd = {"clangd", "--header-insertion=never"},
+      filetypes = {"c", "cpp"}
     }
   end
 })
