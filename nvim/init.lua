@@ -604,7 +604,7 @@ require("mason-null-ls").setup({
     "shellharden",
     "stylua",
     "trim_whitespace",
-    "yapf",
+    "black",
   },
 })
 
