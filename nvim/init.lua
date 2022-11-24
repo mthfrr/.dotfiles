@@ -20,7 +20,9 @@ vim.opt.updatetime = 2000
 
 -- Space as leader key
 vim.g.mapleader = " "
-
+if vim.fn.filereadable("/usr/local/bin/python3.10") then
+  vim.g.python3_host_prog = "/usr/local/bin/python3.10"
+end
 -- Shortcuts
 vim.keymap.set({ "n", "x", "o" }, "<leader>h", "^")
 vim.keymap.set({ "n", "x", "o" }, "<leader>l", "g_")
@@ -563,6 +565,7 @@ vim.api.nvim_create_autocmd("User", {
 -- See :help mason-settings
 require("mason").setup({
   ui = { border = "rounded" },
+  log_level = vim.log.levels.DEBUG,
 })
 
 ---
@@ -637,6 +640,8 @@ require("mason-lspconfig").setup({
     "yamlls",
   },
 })
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.offsetEncoding = { "utf-16" }
 -- See :help mason-lspconfig-dynamic-server-setup
 require("mason-lspconfig").setup_handlers({
   function(server)
@@ -666,6 +671,7 @@ require("mason-lspconfig").setup_handlers({
     lspconfig.clangd.setup({
       cmd = { "clangd", "--header-insertion=never" },
       filetypes = { "c", "cpp" },
+      capabilities = capabilities,
     })
   end,
 })
