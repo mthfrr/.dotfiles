@@ -194,6 +194,14 @@ require("lualine").setup({
 })
 
 ---
+-- sessions.nvim
+---
+require("sessions").setup({
+  events = { "VimLeavePre", "VimResume", "VimSuspend" },
+  session_filepath = ".session",
+})
+
+---
 -- bufferline
 ---
 -- See :help bufferline-settings
