@@ -17,6 +17,7 @@ vim.opt.belloff = "all"
 vim.opt.autowrite = true
 vim.opt.autoread = true
 vim.opt.updatetime = 2000
+vim.opt.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal"
 
 -- Space as leader key
 vim.g.mapleader = " "
@@ -113,18 +114,19 @@ require("packer").startup(function(use)
   use({ "tpope/vim-fugitive" })
 
   -- Code manipulation
+  use({ "numToStr/Comment.nvim" })
   use({ "nvim-treesitter/nvim-treesitter" })
   use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
-  use({ "numToStr/Comment.nvim" })
-  use({ "tpope/vim-surround" })
-  use({ "wellle/targets.vim" })
-  use({ "tpope/vim-repeat" })
+  use({ "tpope/vim-repeat" }) -- api for repeat command
+  use({ "tpope/vim-surround" }) -- cs"' ds" yssb ysiw]
+  use({ "wellle/targets.vim" }) -- add more text objects
 
   -- Utilities
-  use({ "moll/vim-bbye" })
-  use({ "nvim-lua/plenary.nvim" })
-  use({ "editorconfig/editorconfig-vim" })
   use({ "akinsho/toggleterm.nvim" })
+  use({ "editorconfig/editorconfig-vim" })
+  use({ "moll/vim-bbye" })
+  use({ "natecraddock/sessions.nvim" }) -- :SessionsSave [file], :SessionsLoad [file]
+  use({ "nvim-lua/plenary.nvim" })
   use({ "tpope/vim-eunuch" })
   use({ "tpope/vim-speeddating" })
 
