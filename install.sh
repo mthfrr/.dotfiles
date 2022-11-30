@@ -9,10 +9,11 @@ set -e
 
 dot_info "Pull last commits"
 git pull
-dot_info "Pull submodules"
+dot_info "Update submodules"
 git submodule update --init
 dot_info "Update submodules"
-git submodule foreach git pull origin master
+update_submodule ./powerlevel10k/ v1.16.0
+update_submodule ./zsh-vi-mode/ v0.9.0
 
 INSTALL="$DOTFILES"/install
 
