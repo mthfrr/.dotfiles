@@ -2,20 +2,21 @@
 
 set -e
 
-
-. ./colors.sh
-. ./install_functions.sh
 . ./zsh/zshenv
 
+export INSTALL="$DOTFILES"/installation
+
+. "$INSTALL"/colors.sh
+. "$INSTALL"/functions.sh
+
 dot_info "Pull last commits"
-git pull
+git pull -q
 dot_info "Update submodules"
 git submodule update --init
-dot_info "Update submodules"
-update_submodule ./powerlevel10k/ v1.16.0
-update_submodule ./zsh-vi-mode/ v0.9.0
+dot_info "Check update submodules"
+update_submodule ./powerlevel10k/
+update_submodule ./zsh-vi-mode/
 
-INSTALL="$DOTFILES"/install
 
 if [ $# -ne 0 ]; then
 
@@ -24,9 +25,7 @@ if [ $# -ne 0 ]; then
     done
 
 else
-    dot_warn "Warning, current configuration files will be overwritten. (y/n)"
-    read -r -n 1 -s answer
-    [ "$answer" != "y" ] && echo Abort && exit 0
+    dot_confirm "Overwrite configuration" || ( dot_warn "Aborting"; exit 1 )
 
     # Install the configuration files
     dot_install zsh
