@@ -36,9 +36,14 @@ dot_confirm () {
 
 update_submodule () {
     [ $# -ne 1 ] && echo "Usage: $0 [submodule folder]" && return 1
-
-    curr_tag=$(cd "$1" && git describe --tags --abbrev=0)
-    last_tag=$(cd "$1" && git tag | sort -V | tail -n 1)
+    if [ "$(cd "$1"; git tag -l | wc -l)" -eq 0 ]; then
+        # has no tags, work with commits
+        curr_tag=$(cd "$1" && git rev-parse HEAD)
+        last_tag=$(cd "$1" && git log -n 1 --pretty=format:"%H" origin/HEAD)
+    else
+        curr_tag=$(cd "$1" && git describe --tags --abbrev=0)
+        last_tag=$(cd "$1" && git tag | sort -V | tail -n 1)
+    fi
     if [ "$curr_tag" != "$last_tag" ]; then
         dot_warn "Out of date: $1 ($curr_tag -> $last_tag)"
         if dot_confirm "Update"; then

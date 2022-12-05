@@ -14,8 +14,11 @@ git pull -q
 dot_info "Update submodules"
 git submodule update --init
 dot_info "Check update submodules"
-update_submodule ./powerlevel10k/
-update_submodule ./zsh-vi-mode/
+submodules=$(grep -oP '^\[submodule "\K[^"]*' .gitmodules)
+for submodule in $submodules; do
+    dot_info "Check update $submodule"
+    update_submodule "$submodule"
+done
 
 
 if [ $# -ne 0 ]; then

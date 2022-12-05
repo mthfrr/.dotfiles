@@ -3,10 +3,17 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# history
 setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt INC_APPEND_HISTORY
+setopt BANG_HIST
+HISTSIZE=50000
+SAVEHIST=10000
+
 bindkey -v
 bindkey '^R' history-incremental-pattern-search-backward
 
@@ -18,21 +25,24 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 alias d='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-#bindkey -a '^[[3~' vi-delete-char
-#bindkey "^[[1;5D" backward-word
-#bindkey "^[[1;5C" forward-word
-
-source $DOTFILES/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # source aliases
-. $XDG_CONFIG_HOME/aliases.sh
+source $XDG_CONFIG_HOME/aliases.sh
+
+# zsh vi mode
+source $DOTFILES/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# zsh hist
+source $DOTFILES/zsh-hist/zsh-hist.plugin.zsh
 
 # prompt
-# . $ZDOTDIR/prompt.sh
 source $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
+
+# start ssh-agent
+eval `ssh-agent -t 3600` > /dev/null
 
 # enable autocompletion
 autoload -Uz compinit; compinit; _comp_options+=(globdots);
