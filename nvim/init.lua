@@ -21,7 +21,10 @@ vim.opt.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal"
 
 -- Space as leader key
 vim.g.mapleader = " "
-if vim.fn.filereadable("/usr/local/bin/python3.10") then
+-- Python version
+if vim.fn.has_key(vim.fn.environ(), "VIRTUAL_ENV") then
+  vim.g.python3_host_prog = "python3"
+elseif vim.fn.filereadable("/usr/local/bin/python3.10") then
   vim.g.python3_host_prog = "/usr/local/bin/python3.10"
 end
 -- Shortcuts
@@ -242,6 +245,8 @@ require("nvim-treesitter.configs").setup({
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
       },
     },
   },
