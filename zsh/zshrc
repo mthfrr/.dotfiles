@@ -39,6 +39,10 @@ source $DOTFILES/zsh-hist/zsh-hist.plugin.zsh
 source $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
+# path
+path=("$HOME/.nimble/bin" $path)
+export PATH
+
 # start ssh-agent
 eval `ssh-agent -t 3600` > /dev/null
 

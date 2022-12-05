@@ -27,9 +27,6 @@ export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 export I3_CONFIG="$XDG_CONFIG_HOME/i3"
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
-# path
-export PATH=/home/mfourre/.nimble/bin:$PATH
-
 # wsl X11
 if uname -r | grep -q WSL; then
     export WSL=1
