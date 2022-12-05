@@ -4,3 +4,6 @@
 [submodule "powerlevel10k"]
 	path = powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "zsh-hist"]
+	path = zsh-hist
+	url = https://github.com/marlonrichert/zsh-hist
