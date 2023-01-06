@@ -18,14 +18,16 @@ vim.opt.autowrite = true
 vim.opt.autoread = true
 vim.opt.updatetime = 2000
 vim.opt.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal"
+vim.opt.spellsuggest = "best,9"
+vim.opt.spelllang = "en,fr"
 
 -- Space as leader key
 vim.g.mapleader = " "
 -- Python version
 if vim.fn.has_key(vim.fn.environ(), "VIRTUAL_ENV") then
   vim.g.python3_host_prog = "python3"
-elseif vim.fn.filereadable("/usr/local/bin/python3.10") then
-  vim.g.python3_host_prog = "/usr/local/bin/python3.10"
+elseif vim.fn.filereadable("/usr/bin/python3.9") then
+  vim.g.python3_host_prog = "/usr/bin/python3.9"
 end
 -- Shortcuts
 vim.keymap.set({ "n", "x", "o" }, "<leader>h", "^")
@@ -47,6 +49,8 @@ vim.keymap.set("n", "<leader>q", ":wq<cr>")
 vim.keymap.set("n", "<leader>qq", ":wqa<cr>")
 vim.keymap.set("n", "<leader>bq", "<cmd>bdelete<cr>")
 vim.keymap.set("n", "<leader>bl", "<cmd>buffer #<cr>")
+vim.keymap.set("n", "<F11>", "<cmd>:set spell!<cr>")
+vim.keymap.set("i", "<F11>", "<cmd>:set spell!<cr>")
 
 -- ========================================================================== --
 -- ==                               COMMANDS                               == --
@@ -634,6 +638,11 @@ require("mason-null-ls").setup_handlers({
     null_ls.register(null_ls.builtins.formatting.clang_format.with({
       filetypes = { "c", "cpp" },
       extra_args = { "-stype=FILE" },
+    }))
+  end,
+  codespell = function()
+    null_ls.register(null_ls.builtins.formatting.codespell.with({
+      disabled_filetypes = { "md" },
     }))
   end,
 })
