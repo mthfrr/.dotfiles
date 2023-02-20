@@ -183,6 +183,10 @@ bindsym $mod+r mode "resize"
 
 # Custom part
 
+# gaps
+gaps inner 5
+smart_gaps on
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run -i -p '>' -nb '#272727' -nf '#ebdbb2' -sb '#272727' -sf '#b16185'
 
