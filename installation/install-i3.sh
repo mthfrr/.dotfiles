@@ -9,4 +9,4 @@ if ! command -v "mediactl" > /dev/null; then
 fi
 
 # ln -sf $DOTFILES/i3/lock.png $I3_CONFIG
-ln -s "$DOTFILES/i3/config" "$I3_CONFIG"
+ln -sf "$DOTFILES/i3/config" "$I3_CONFIG"
