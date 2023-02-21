@@ -51,6 +51,14 @@ bindsym XF86AudioNext exec mediactl Next
 bindsym XF86AudioPrev exec mediactl Previous
 bindsym XF86AudioStop exec mediactl Stop
 
+# Brightness (acpilight)
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -step 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -step 10
+
+
+bindsym XF86Display exec arandr
+bindsym XF86WLAN exec --no-startup-id rfkill toggle 2
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

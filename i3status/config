@@ -33,7 +33,6 @@ cpu_usage {
 cpu_temperature 0 {
     format = "🌡️%degrees°C"
     max_threshold = 80
-    path = "/sys/class/hwmon/hwmon2/temp1_input"
 }
 
 memory {
