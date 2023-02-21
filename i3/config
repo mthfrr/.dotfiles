@@ -237,7 +237,7 @@ bar {
 bindsym $mod+x exec "i3lock -c 272727 && sleep 5 && xset dpms force off"
 
 # screenshots
-bindsym Print exec "flameshot gui"
+bindsym Print exec "flameshot gui --last-region"
 
 # move current workspace between monitors
 bindsym $mod+Control+h move workspace to output left

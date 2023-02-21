@@ -33,6 +33,7 @@ cpu_usage {
 cpu_temperature 0 {
     format = "🌡️%degrees°C"
     max_threshold = 80
+    path = "/sys/devices/platform/thinkpad_hwmon/hwmon/hwmon5/temp1_input"
 }
 
 memory {
