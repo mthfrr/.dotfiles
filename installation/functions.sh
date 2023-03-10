@@ -28,7 +28,7 @@ dot_is_installed () {
 
 dot_confirm () {
     printf "$green%s (y/n) " "$1"
-    read -r -n 1 -s answer
+    read -r answer
     printf "\r\033[2K\033[39m"
     [ "$answer" != "y" ] && return 1
     return 0
