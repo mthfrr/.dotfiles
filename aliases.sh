@@ -14,6 +14,8 @@ alias j='jobs -l'
 
 alias sshag='eval $(ssh-agent -s -t 30)'
 
+alias ip='ip --color=auto'
+
 alias tree='tree -C'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -29,7 +31,7 @@ alias gitl="git log -10 --oneline --graph"
 
 # reload
 if ps -p$$ -ocmd= | grep -q zsh; then
-alias reload_zsh=". $ZDOTDIR/.zshrc"
+    alias reload_zsh=". $ZDOTDIR/.zshrc"
 fi
 
 # shell
@@ -102,4 +104,3 @@ gituctp_manual_tag() {
     yes | gitct "$1" "$2"
     gitp
 }
-
