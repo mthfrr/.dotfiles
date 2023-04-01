@@ -30,6 +30,6 @@ export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 # wsl X11
 if uname -r | grep -q WSL; then
     export WSL=1
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=1
+    #export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+    #export LIBGL_ALWAYS_INDIRECT=1
 fi
