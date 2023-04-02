@@ -27,6 +27,9 @@ export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 export I3_CONFIG="$XDG_CONFIG_HOME/i3"
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
+# please give me all the colors (useful with viu)
+export COLORTERM=truecolor
+
 # wsl X11
 if uname -r | grep -q WSL; then
     export WSL=1
