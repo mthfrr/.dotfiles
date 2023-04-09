@@ -45,7 +45,12 @@ export PATH
 
 # start ssh-agent
 # eval `ssh-agent -t 3600` > /dev/null
-gpg-connect-agent /bye > /dev/null
+
+# GnuPG
+export GPG_TTY=$TTY
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+gpg-connect-agent updatestartuptty /bye > /dev/null 2> /dev/null
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # enable autocompletion
 autoload -Uz compinit; compinit; _comp_options+=(globdots);
