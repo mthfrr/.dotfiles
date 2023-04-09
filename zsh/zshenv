@@ -30,9 +30,11 @@ export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 # please give me all the colors (useful with viu)
 export COLORTERM=truecolor
 
+# Gpg variables
+export GPG_TTY="$(tty)"
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+
 # wsl X11
 if uname -r | grep -q WSL; then
     export WSL=1
-    #export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    #export LIBGL_ALWAYS_INDIRECT=1
 fi

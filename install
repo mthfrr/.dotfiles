@@ -24,13 +24,14 @@ done
 if [ $# -ne 0 ]; then
 
     for p in "$@"; do
-        dot_is_installed "$p" && dot_install "$p"
+        dot_install "$p"
     done
 
 else
     dot_confirm "Overwrite configuration" || ( dot_warn "Aborting"; exit 1 )
 
     # Install the configuration files
+    dot_install locale
     dot_install zsh
     dot_install clang-format
     dot_install nvim
@@ -41,5 +42,5 @@ else
     dot_is_installed i3           && dot_install i3
     dot_is_installed i3status     && dot_install i3status
     dot_is_installed ssh          && dot_install ssh
-
+    dot_is_installed gpg          && dot_install gpg
 fi
