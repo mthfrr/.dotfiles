@@ -3,3 +3,16 @@
 	name = Mathieu Fourre
 [core]
 	editor = vim
+[alias]
+  a = add
+  u = add -u
+  b = branch
+  c = commit -S -m
+  t = tag -s -m "-" -a
+  p = push --follow-tags
+  pu = pull
+  co = checkout
+  r = reset
+  s = status
+  l = log -10 --oneline --graph
+

@@ -12,30 +12,16 @@ alias cf='clang-format --style=FILE $(find . -type f -name "*.[ch]")'
 
 alias j='jobs -l'
 
-alias sshag='eval $(ssh-agent -s -t 30)'
-
 alias ip='ip --color=auto'
 
 alias tree='tree -C'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
-# git
-alias gita="git add"
-alias gitu="git add -u"
-alias gits="git status"
-alias gitc="git commit -m "
-#alias gitt="git tag -a "
-alias gitp="git push --follow-tags"
-alias gitl="git log -10 --oneline --graph"
-
 # reload
 if ps -p$$ -ocmd= | grep -q zsh; then
     alias reload_zsh=". $ZDOTDIR/.zshrc"
 fi
-
-# shell
-alias vim=nvim
 
 mktouch() { mkdir -p "$(dirname "$1")" && touch "$1"; }
 
