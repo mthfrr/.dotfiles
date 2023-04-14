@@ -35,6 +35,7 @@ else
     dot_install zsh
     dot_install clang-format
     dot_install nvim
+    dot_install gdb
 
     dot_is_installed git          && dot_install git
     dot_is_installed dunst        && dot_install dunst
