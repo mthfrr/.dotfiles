@@ -616,26 +616,25 @@ require("mason-null-ls").setup({
         "trim_whitespace",
         "black",
     },
-})
-
-require("mason-null-ls").setup_handlers({
-    function(src_name, methods)
-        require("mason-null-ls.automatic_setup")(src_name, methods)
-    end,
-    stylua = function()
-        null_ls.register(null_ls.builtins.formatting.stylua)
-    end,
-    clang_format = function()
-        null_ls.register(null_ls.builtins.formatting.clang_format.with({
-            filetypes = { "c", "cpp" },
-            extra_args = { "-stype=FILE" },
-        }))
-    end,
-    codespell = function()
-        null_ls.register(null_ls.builtins.formatting.codespell.with({
-            disabled_filetypes = { "md" },
-        }))
-    end,
+    handler = {
+        function(src_name, methods)
+            require("mason-null-ls.automatic_setup")(src_name, methods)
+        end,
+        stylua = function()
+            null_ls.register(null_ls.builtins.formatting.stylua)
+        end,
+        clang_format = function()
+            null_ls.register(null_ls.builtins.formatting.clang_format.with({
+                filetypes = { "c", "cpp" },
+                extra_args = { "-stype=FILE" },
+            }))
+        end,
+        codespell = function()
+            null_ls.register(null_ls.builtins.formatting.codespell.with({
+                disabled_filetypes = { "md", "tex", "txt" },
+            }))
+	end,
+    }
 })
 
 null_ls.setup()
