@@ -611,7 +611,6 @@ require("mason-null-ls").setup({
         "beautysh",
         "clang_format",
         "fixjson",
-        "shellharden",
         "stylua",
         "trim_whitespace",
         "black",
