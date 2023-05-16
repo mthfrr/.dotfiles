@@ -1,10 +1,5 @@
--- local autocmd = vim.api.nvim_create_autocmd
-
--- Auto resize panes when resizing nvim window
--- autocmd("VimResized", {
---   pattern = "*",
---   command = "tabdo wincmd =",
--- })
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/lua_snippets"
 
@@ -16,8 +11,8 @@ vim.opt.spellsuggest = "best,9"
 vim.opt.spelllang = "en,fr"
 
 -- Read file changes often
-local file_read = vim.api.nvim_create_augroup("file_read", { clear = true })
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "VimResume" }, {
+local file_read = augroup("file_read", { clear = true })
+autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "VimResume" }, {
 	desc = "Reload file if changed on disk",
 	group = file_read,
 	command = "if mode() != 'c' |checktime|redraw!|  endif",
