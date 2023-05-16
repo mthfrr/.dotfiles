@@ -126,7 +126,7 @@ require("packer").startup(function(use)
     use({ "numToStr/Comment.nvim" })
     use({ "nvim-treesitter/nvim-treesitter" })
     use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
-    use({ "tpope/vim-repeat" }) -- api for repeat command
+    use({ "tpope/vim-repeat" })   -- api for repeat command
     use({ "tpope/vim-surround" }) -- cs"' ds" yssb ysiw]
     use({ "wellle/targets.vim" }) -- add more text objects
 
@@ -588,6 +588,9 @@ local null_ls = require("null-ls")
 
 local augroup_lspfmt = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.trim_whitespace,
+    },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
             vim.api.nvim_clear_autocmds({ group = augroup_lspfmt, buffer = bufnr })
@@ -612,12 +615,12 @@ require("mason-null-ls").setup({
         "clang_format",
         "fixjson",
         "stylua",
-        "trim_whitespace",
         "black",
     },
+    automatic_setup = true,
     handler = {
         function(src_name, methods)
-            require("mason-null-ls.automatic_setup")(src_name, methods)
+            require('mason-null-ls').default_setup(src_name, methods)
         end,
         stylua = function()
             null_ls.register(null_ls.builtins.formatting.stylua)
@@ -632,11 +635,10 @@ require("mason-null-ls").setup({
             null_ls.register(null_ls.builtins.formatting.codespell.with({
                 disabled_filetypes = { "md", "tex", "txt" },
             }))
-	end,
+        end,
     }
 })
 
-null_ls.setup()
 
 ---
 -- Mason-Lspconfig
@@ -659,7 +661,7 @@ require("mason-lspconfig").setup_handlers({
         lspconfig[server].setup({})
     end,
     ["lua_ls"] = function()
-        lspconfig.sumneko_lua.setup({
+        lspconfig.lua_ls.setup({
             settings = {
                 Lua = {
                     runtime = {
