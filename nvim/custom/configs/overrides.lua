@@ -20,6 +20,21 @@ M.treesitter = {
 		--   "python"
 		-- },
 	},
+	-- :help nvim-treesitter-textobjects-modules
+	textobjects = {
+		select = {
+			enable = true,
+			lookahead = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["al"] = "@loop.outer",
+				["il"] = "@loop.inner",
+			},
+		},
+	},
 }
 
 M.mason = {
