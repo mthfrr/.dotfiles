@@ -11,16 +11,12 @@
 #fi
 
 mkdir -p "$VIMCONFIG"
+mkdir -p "$VIMCONFIG"/lua
 
-# install nvim config
-ln -sf "$DOTFILES/nvim/init.lua" "$VIMCONFIG"/
+# install NvChad
+ln -sf "$DOTFILES/NvChad/init.lua" "$VIMCONFIG/"
+ln -sf "$DOTFILES/NvChad/lua/core" "$VIMCONFIG/lua/"
+ln -sf "$DOTFILES/NvChad/lua/plugins" "$VIMCONFIG/lua/"
 
-# Coc config file
-# ln -sf "$DOTFILES/nvim/coc-settings.json" "$VIMCONFIG"
-
-# Install all mandatory folders if they don't exist already
-#mkdir -p "$VIMCONFIG/plugged"
-#mkdir -p "$VIMCONFIG/backup"
-#mkdir -p "$VIMCONFIG/undo"
-#mkdir -p "$VIMCONFIG/swap"
-#mkdir -p "$VIMCONFIG/after"
+# custom config
+ln -sf "$DOTFILES/nvim/custom" "$VIMCONFIG/lua/custom"
