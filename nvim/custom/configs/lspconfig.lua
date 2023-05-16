@@ -7,13 +7,10 @@ local lspconfig = require("lspconfig")
 local servers = { "html", "cssls", "tsserver", "pyright" }
 
 local my_on_attach = function(client, bufnr)
-	print("plop1")
 	on_attach(client, bufnr)
-	print("plop2")
 
 	-- Highlight if cursor hovers
 	if client.server_capabilities.documentHighlightProvider then
-		print("plop3")
 		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
 		vim.api.nvim_create_autocmd({ "CursorHold" }, {
