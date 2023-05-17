@@ -11,7 +11,6 @@ M.general = {
 	v = {
 		["<leader>y"] = { '"+y', "yank to system clipboard" },
 		["<leader>Y"] = { '"+yg_', "yank to system clipboard" },
-		["<leader>yy"] = { '"+yy', "yank line to system clipboard" },
 
 		["<leader>p"] = { '"+p', "paste from system clipboard" },
 		["<leader>P"] = { '"+P', "paste from system clipboard" },
