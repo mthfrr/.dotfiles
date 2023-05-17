@@ -7,3 +7,6 @@
 [submodule "zsh-hist"]
 	path = zsh-hist
 	url = https://github.com/marlonrichert/zsh-hist
+[submodule "NvChad"]
+	path = NvChad
+	url = https://github.com/NvChad/NvChad
