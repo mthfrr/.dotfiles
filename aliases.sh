@@ -18,6 +18,8 @@ alias tree='tree -C'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias venv='. .*/bin/activate'
+
 # reload
 if ps -p$$ -ocmd= | grep -q zsh; then
     alias reload_zsh=". $ZDOTDIR/.zshrc"

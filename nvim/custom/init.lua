@@ -3,6 +3,7 @@ local augroup = vim.api.nvim_create_augroup
 
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/lua_snippets"
 
+vim.opt.clipboard = ""
 vim.opt.autowrite = true
 vim.opt.autoread = true
 vim.opt.updatetime = 2000

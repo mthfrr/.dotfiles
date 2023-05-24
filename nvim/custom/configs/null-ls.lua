@@ -18,6 +18,9 @@ local sources = {
 
 	-- cpp
 	b.formatting.clang_format,
+
+	-- yaml
+	b.formatting.yamlfix,
 }
 
 -- auto format
