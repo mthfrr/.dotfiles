@@ -10,13 +10,12 @@
 #    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 #fi
 
-mkdir -p "$VIMCONFIG"
 mkdir -p "$VIMCONFIG"/lua
 
 # install NvChad
-ln -sf "$DOTFILES/NvChad/init.lua" "$VIMCONFIG/"
-ln -sf "$DOTFILES/NvChad/lua/core" "$VIMCONFIG/lua/"
-ln -sf "$DOTFILES/NvChad/lua/plugins" "$VIMCONFIG/lua/"
+ln -sf "$DOTFILES/NvChad/init.lua" "$VIMCONFIG"
+ln -sf "$DOTFILES/NvChad/lua/core/" "$VIMCONFIG/lua"
+ln -sf "$DOTFILES/NvChad/lua/plugins/" "$VIMCONFIG/lua"
 
 # custom config
-ln -sf "$DOTFILES/nvim/custom" "$VIMCONFIG/lua/custom"
+ln -sf "$DOTFILES/nvim/custom/" "$VIMCONFIG/lua"
