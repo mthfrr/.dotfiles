@@ -27,11 +27,17 @@ export TMUXP_CONFIGDIR="$XDG_CONFIG_HOME/tmuxp"
 export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 export I3_CONFIG="$XDG_CONFIG_HOME/i3"
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
+export WINEPREFIX="$XDG_DATA_HOME"/wine
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # please give me all the colors (useful with viu)
 export COLORTERM=truecolor
-
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
 # wsl X11
 if uname -r | grep -q WSL; then
