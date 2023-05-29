@@ -44,4 +44,5 @@ else
     dot_is_installed i3status     && dot_install i3status
     dot_is_installed ssh          && dot_install ssh
     dot_is_installed gpg          && dot_install gpg
+    dot_is_installed wget         && dot_install wget
 fi
