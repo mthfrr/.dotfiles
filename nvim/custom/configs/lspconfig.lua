@@ -40,3 +40,10 @@ lspconfig.clangd.setup({
 	capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
 	cmd = { "clangd", "--header-insertion=never" },
 })
+
+lspconfig.zls.setup({
+	on_attach = my_on_attach,
+	capabilities = capabilities,
+	enable_inlay_hints = true,
+	use_comptime_interpreter = true,
+})
