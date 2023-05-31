@@ -20,7 +20,8 @@ battery all {
     status_bat = "🔋 "
     status_unk = "? "
     status_full = ""
-    low_threshold = 20
+    threshold_type = percentage
+    low_threshold = 15
     path = "/sys/class/power_supply/BAT%d/uevent"
 }
 
