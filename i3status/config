@@ -14,7 +14,7 @@ order += "volume master"
 order += "tztime local"
 
 battery all {
-    format = "%status%percentage (%remaining)"
+    format = "%status%percentage (%remaining %consumption)"
     format_down = ""
     status_chr = "⚡ "
     status_bat = "🔋 "
