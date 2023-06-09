@@ -34,6 +34,19 @@ dot_confirm () {
     return 0
 }
 
+function exists_in_list() {
+    LIST=$1
+    DELIMITER=$2
+    VALUE=$3
+    LIST_WHITESPACES=`echo $LIST | tr "$DELIMITER" " "`
+    for x in $LIST_WHITESPACES; do
+        if [ "$x" = "$VALUE" ]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
 update_submodule () {
     [ $# -ne 1 ] && echo "Usage: $0 [submodule folder]" && return 1
     if [ "$(cd "$1"; git tag -l | wc -l)" -eq 0 ]; then
@@ -44,6 +57,22 @@ update_submodule () {
         curr_tag=$(cd "$1" && git describe --tags --abbrev=0)
         last_tag=$(cd "$1" && git tag | sort -V | tail -n 1)
     fi
+    if [ "$curr_tag" != "$last_tag" ]; then
+        dot_warn "Out of date: $1 ($curr_tag -> $last_tag)"
+        if dot_confirm "Update"; then
+            (cd "$1" && git checkout "$last_tag")
+            git add "$1"
+            git commit -m "submodule: Update $1 ($curr_tag -> $last_tag)"
+            git push
+        fi
+    fi
+    return 0
+}
+
+update_submodule_rolling () {
+    [ $# -ne 1 ] && echo "Usage: $0 [submodule folder]" && return 1
+    curr_tag=$(cd "$1" && git rev-parse HEAD)
+    last_tag=$(cd "$1" && git log -n 1 --pretty=format:"%H" origin/HEAD)
     if [ "$curr_tag" != "$last_tag" ]; then
         dot_warn "Out of date: $1 ($curr_tag -> $last_tag)"
         if dot_confirm "Update"; then
