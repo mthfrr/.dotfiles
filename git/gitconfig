@@ -2,7 +2,7 @@
 	email = mathieu.fourre@epita.fr
 	name = Mathieu Fourre
 [core]
-	editor = vim
+	editor = nvim
 [push]
 	autoSetupRemote = true
 [alias]
@@ -10,6 +10,7 @@
 	u = add -u
 	b = branch
 	c = commit -S -m
+	ca = commit -S --amend
 	t = tag -s -m "-" -a
 	p = push --follow-tags
 	pu = pull
