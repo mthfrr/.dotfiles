@@ -15,12 +15,9 @@ local sources = {
 
 	-- Lua
 	b.formatting.stylua,
-
-	-- cpp
 	b.formatting.clang_format,
-
-	-- yaml
 	b.formatting.yamlfix,
+	b.formatting.black,
 }
 
 -- auto format
