@@ -17,6 +17,12 @@ M.general = {
 	},
 }
 
+M.telescope = {
+	n = {
+		["<leader>fs"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbol" },
+	},
+}
+
 -- more keybinds!
 
 return M
