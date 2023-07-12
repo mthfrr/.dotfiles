@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+. ./zsh/zshenv
+
+export INSTALL="$DOTFILES"/installation
+
+. "$INSTALL"/colors.sh
+. "$INSTALL"/functions.sh
+
+dot_info "Pull last commits"
+git pull -q
+dot_info "Update submodules"
+git submodule update --init
+dot_info "Check update submodules"
+submodules=$(grep -oP '^\[submodule "\K[^"]*' .gitmodules)
+for submodule in $submodules; do
+    dot_info "Check update $submodule"
+    if exists_in_list "NvChad" " " "$submodule"; then
+      update_submodule_rolling "$submodule"
+    else
+      update_submodule "$submodule"
+    fi
+done
