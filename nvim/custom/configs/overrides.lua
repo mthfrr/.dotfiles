@@ -53,6 +53,7 @@ M.mason = {
 		-- c/cpp stuff
 		"clangd",
 		"clang-format",
+		"codelldb",
 
 		-- python
 		"pyright",
