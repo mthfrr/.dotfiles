@@ -38,7 +38,7 @@ end
 lspconfig.clangd.setup({
 	on_attach = my_on_attach,
 	capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = "utf-8" }),
-	cmd = { "clangd", "--header-insertion=never" },
+	cmd = { "clangd", "--header-insertion=never", "--background-index", "--clang-tidy", "--log=verbose" },
 })
 
 lspconfig.zls.setup({
