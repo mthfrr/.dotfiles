@@ -23,6 +23,14 @@ M.telescope = {
 	},
 }
 
+M.dap = {
+	plugin = true,
+	n = {
+		["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", "Breakpoint toggle at line" },
+		["<leader>dr"] = { "<cmd> DapContinue <CR>", "Start or continue the debugger" },
+	},
+}
+
 -- more keybinds!
 
 return M
