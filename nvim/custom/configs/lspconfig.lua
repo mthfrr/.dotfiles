@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "pyright" }
+local servers = { "html", "cssls", "tsserver", "pyright", "texlab" }
 
 local my_on_attach = function(client, bufnr)
 	on_attach(client, bufnr)
@@ -46,4 +46,28 @@ lspconfig.zls.setup({
 	capabilities = capabilities,
 	enable_inlay_hints = true,
 	use_comptime_interpreter = true,
+})
+
+lspconfig.texlab.setup({
+	on_attach = my_on_attach,
+	capabilities = capabilities,
+	settings = {
+		texlab = {
+
+			auxDirectory = ".",
+			bibtexFormatter = "texlab",
+			build = {
+				args = {
+					"-X",
+					"compile",
+					"%f",
+					"--synctex",
+					"--keep-logs",
+					"--keep-intermediates",
+				},
+				executable = "tectonic",
+			},
+			diagnosticsDelay = 300,
+		},
+	},
 })
