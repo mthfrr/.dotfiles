@@ -42,8 +42,8 @@ exec_always --no-startup-id sh "$HOME/.fehbg"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-set $notify_volume notify-send -h int:value:$(pactl get-sink-volume @DEFAULT_SINK@ | sed -n -e 's/.* \([0-9]\+\)%.*/\1/pg') -h string:synchronous:volume "Volume"
-set $notify_volume_mute notify-send -h int:value:$(pactl get-sink-mute @DEFAULT_SINK@ | grep -q 'Mute: yes' && echo 0 ||pactl get-sink-volume @DEFAULT_SINK@ | sed -n -e 's/.* \([0-9]\+\)%.*/\1/pg') -h string:synchronous:volume "Volume"
+set $notify_volume notify-send -t 300 -h int:value:$(pactl get-sink-volume @DEFAULT_SINK@ | sed -n -e 's/.* \([0-9]\+\)%.*/\1/pg') -h string:synchronous:volume "Volume"
+set $notify_volume_mute notify-send -t 300 -h int:value:$(pactl get-sink-mute @DEFAULT_SINK@ | grep -q 'Mute: yes' && echo 0 ||pactl get-sink-volume @DEFAULT_SINK@ | sed -n -e 's/.* \([0-9]\+\)%.*/\1/pg') -h string:synchronous:volume "Volume"
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $notify_volume && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $notify_volume && $refresh_i3status
@@ -59,9 +59,9 @@ bindsym XF86AudioStop exec mediactl Stop
 # Brightness (acpilight)
 set $get_brightness xbacklight -get | cut -d '.' -f 1
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -step 10 \
-    && notify-send -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
+    && notify-send -t 300 -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -step 10 \
-    && notify-send -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
+    && notify-send -t 300 -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
 
 
 bindsym XF86Display exec arandr
