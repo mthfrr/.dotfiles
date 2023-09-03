@@ -16,6 +16,8 @@ vim.opt.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal"
 vim.opt.spellsuggest = "best,9"
 vim.opt.spelllang = "en,fr"
 
+vim.diagnostic.config({ severity_sort = true })
+
 -- Read file changes often
 local file_read = augroup("file_read", { clear = true })
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "VimResume" }, {

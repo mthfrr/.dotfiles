@@ -47,17 +47,21 @@ M.mason = {
 		"css-lsp",
 		"html-lsp",
 		"typescript-language-server",
-		"deno",
 		"prettier",
 
 		-- c/cpp stuff
 		"clangd",
 		"clang-format",
-		"codelldb",
+		-- "clang-tidy",
 
 		-- python
 		"pyright",
+		"pylint",
 		"black",
+
+		-- shell
+		"shfmt",
+		"shellcheck",
 	},
 }
 
