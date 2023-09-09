@@ -1,7 +1,12 @@
 local ft = require("guard.filetype")
 local lint = require("guard.lint")
 
-ft("c"):fmt("clang-format"):lint({
+ft("c,cpp"):fmt({
+	cmd = "clang-format",
+	args = { "--style=FILE", "--assume-filename" },
+	stdin = true,
+	fname = true,
+}):lint({
 	cmd = "clang-tidy",
 	args = { "--quiet", "-checks='clang-analyzer-*,concurrency-*,performance-*,portability-*'" },
 	parse = lint.from_regex({
@@ -37,10 +42,18 @@ ft("python"):fmt("black"):lint({
 })
 
 ft("lua"):fmt("stylua")
-ft("html,markdown,css,scss,typescript,javascript,typescriptreact,yaml,json"):fmt("prettier")
+
+ft("html,markdown,css,scss,typescript,javascript,json"):fmt("prettier")
+
+ft("yaml"):fmt({
+	cmd = "yamlfix",
+	args = { "-" },
+	stdin = true,
+})
+
 ft("sh"):fmt("shfmt"):lint("shellcheck")
 
 require("guard").setup({
 	fmt_on_save = true,
-	lsp_as_default_formatter = false,
+	lsp_as_default_formatter = true,
 })

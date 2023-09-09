@@ -62,6 +62,9 @@ M.mason = {
 		-- shell
 		"shfmt",
 		"shellcheck",
+
+        -- yaml
+        "yamlfix"
 	},
 }
 
