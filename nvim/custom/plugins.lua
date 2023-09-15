@@ -14,6 +14,9 @@ local plugins = {
 				config = function()
 					require("custom.configs.guard")
 				end,
+                dependencies = {
+                    "nvimdev/guard-collection"
+                }
 			},
 		},
 		config = function()
