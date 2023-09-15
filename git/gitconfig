@@ -26,7 +26,8 @@
     co = checkout
     r = reset
     s = status
-    l = log -20 --oneline --graph
+    #l = log -20 --oneline --graph
+    l = "log -20 --graph --format=\"%C(auto)%h %Cblue%an%C(auto)%d %C(brightblack)%ah %Cred%G?%n  %s\""
     fire = "! git c \"$(curl -s https://whatthecommit.com/index.txt)\""
 [filter "lfs"]
     required = true
