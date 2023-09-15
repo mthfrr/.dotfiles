@@ -10,7 +10,7 @@
 	u = add -u
 	b = branch
 	c = commit -S -m
-  cu = commit -S -a -m
+    cu = commit -S -a -m
 	ca = commit -S --amend
 	t = tag -s -m "-" -a
 	p = push --follow-tags
@@ -19,7 +19,7 @@
 	r = reset
 	s = status
 	l = log -10 --oneline --graph
-
+    fire = "! git c \"$(curl https://whatthecommit.com/index.txt)\""
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
