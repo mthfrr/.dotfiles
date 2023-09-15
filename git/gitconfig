@@ -1,27 +1,35 @@
 [user]
-	email = mathieu.fourre@epita.fr
-	name = Mathieu Fourre
+    email = mathieu.fourre@epita.fr
+    name = Mathieu Fourre
 [core]
-	editor = nvim
+    editor = nvim
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
+[init]
+    defaultBranch = "main"
+[pull]
+    rebase = true
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
 [alias]
-	a = add
-	u = add -u
-	b = branch
-	c = commit -S -m
-    cu = commit -S -a -m
-	ca = commit -S --amend
-	t = tag -s -m "-" -a
-	p = push --follow-tags
-	pu = pull
-	co = checkout
-	r = reset
-	s = status
-	l = log -10 --oneline --graph
-    fire = "! git c \"$(curl https://whatthecommit.com/index.txt)\""
+    a = add
+    u = add -u
+    b = branch
+    c = commit -m
+    cu = commit -a -m
+    ca = commit --amend
+    t = tag -m "-" -a
+    p = push --follow-tags
+    pu = pull
+    co = checkout
+    r = reset
+    s = status
+    l = log -20 --oneline --graph
+    fire = "! git c \"$(curl -s https://whatthecommit.com/index.txt)\""
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
