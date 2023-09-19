@@ -23,6 +23,8 @@ M.telescope = {
 	},
 }
 
+M.lspconfig = {}
+
 -- more keybinds!
 
 return M

@@ -40,7 +40,7 @@ source $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 # path
-path=("$HOME/.nimble/bin" "$HOME/bin" $path)
+path=("$HOME/.nimble/bin" "$HOME/bin" "$HOME/.local/bin" $path)
 export PATH
 
 # GnuPG
