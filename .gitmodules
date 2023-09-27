@@ -10,3 +10,6 @@
 [submodule "NvChad"]
 	path = NvChad
 	url = https://github.com/NvChad/NvChad
+[submodule "zsh-autosuggestions"]
+	path = zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

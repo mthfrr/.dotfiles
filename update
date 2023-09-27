@@ -13,13 +13,14 @@ dot_info "Pull last commits"
 git pull -q
 dot_info "Update submodules"
 git submodule update --init
-dot_info "Check update submodules"
+dot_info "Check update submodules..."
 submodules=$(grep -oP '^\[submodule "\K[^"]*' .gitmodules)
 for submodule in $submodules; do
-    dot_info "Check update $submodule"
-    if exists_in_list "NvChad" " " "$submodule"; then
-      update_submodule_rolling "$submodule"
-    else
-      update_submodule "$submodule"
-    fi
+	if exists_in_list "NvChad zsh-autosuggestions" " " "$submodule"; then
+		dot_info "Check update $submodule - Rolling"
+		update_submodule_rolling "$submodule"
+	else
+		dot_info "Check update $submodule - Tag"
+		update_submodule "$submodule"
+	fi
 done

@@ -33,6 +33,9 @@ source $XDG_CONFIG_HOME/aliases.sh
 source $DOTFILES/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # zsh hist
+source $DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh hist
 source $DOTFILES/zsh-hist/zsh-hist.plugin.zsh
 
 # prompt
