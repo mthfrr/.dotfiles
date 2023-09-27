@@ -2,6 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/lua_snippets"
+vim.g.c_syntax_for_h = 1
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
