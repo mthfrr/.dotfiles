@@ -53,6 +53,8 @@ ft("yaml"):fmt({
 
 ft("sh"):fmt("shfmt"):lint("shellcheck")
 
+ft("tex,latex"):fmt("latexindent")
+
 require("guard").setup({
 	fmt_on_save = true,
 	lsp_as_default_formatter = true,
