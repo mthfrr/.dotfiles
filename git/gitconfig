@@ -5,6 +5,8 @@
     editor = nvim
 [push]
     autoSetupRemote = true
+    followTags = true
+    useForceIfIncludes = true
 [init]
     defaultBranch = "main"
 [pull]
@@ -21,7 +23,7 @@
     cu = commit -a -m
     ca = commit --amend
     t = tag -m "-" -a
-    p = push --follow-tags
+    p = push
     pu = pull
     co = checkout
     r = reset
@@ -34,3 +36,5 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
+
+# vim: ft=toml
