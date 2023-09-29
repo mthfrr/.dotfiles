@@ -11,6 +11,8 @@
     defaultBranch = "main"
 [pull]
     rebase = true
+[rerere]
+    enable = true
 [commit]
     gpgsign = true
 [tag]
