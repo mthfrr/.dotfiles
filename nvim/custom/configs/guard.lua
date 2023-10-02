@@ -43,7 +43,7 @@ ft("python"):fmt("black"):lint({
 
 ft("lua"):fmt("stylua")
 
-ft("html,markdown,css,scss,typescript,javascript,json"):fmt("prettier")
+ft("html,css,scss,typescript,javascript,json"):fmt("prettier")
 
 ft("yaml"):fmt({
 	cmd = "yamlfix",
@@ -52,6 +52,18 @@ ft("yaml"):fmt({
 })
 
 ft("sh"):fmt("shfmt"):lint("shellcheck")
+
+ft("toml"):fmt({
+	cmd = "taplo",
+	args = { "fmt", "-" },
+	stdin = true,
+})
+
+ft("markdown"):fmt({
+	cmd = "mdformat",
+	args = { "-" },
+	stdin = true,
+})
 
 ft("tex,latex"):fmt("latexindent")
 

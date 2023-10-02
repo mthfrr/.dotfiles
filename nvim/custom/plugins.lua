@@ -14,9 +14,9 @@ local plugins = {
 				config = function()
 					require("custom.configs.guard")
 				end,
-                dependencies = {
-                    "nvimdev/guard-collection"
-                }
+				dependencies = {
+					"nvimdev/guard-collection",
+				},
 			},
 		},
 		config = function()
@@ -87,6 +87,14 @@ local plugins = {
 				events = { "VimLeavePre", "VimResume", "VimSuspend" },
 				session_filepath = ".session",
 			})
+		end,
+	},
+
+	{
+		"dpelle/vim-Grammalecte",
+		cmd = { "GrammalecteCheck", "GrammalecteClear" },
+		init = function()
+			require("custom.configs.grammalecte")
 		end,
 	},
 }

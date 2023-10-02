@@ -14,6 +14,8 @@ vim.opt.autowrite = true
 vim.opt.autoread = true
 vim.opt.updatetime = 2000
 vim.opt.sessionoptions = "curdir,folds,help,tabpages,winsize,terminal"
+
+vim.g.spellfile_URL = "https://ftp.nluug.nl/vim/runtime/spell"
 vim.opt.spellsuggest = "best,9"
 vim.opt.spelllang = "en,fr"
 
