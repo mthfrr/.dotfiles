@@ -1,0 +1,7 @@
+*.bin binary diff=bin
+*.exe binary diff=bin
+*.jpeg binary diff=bin
+*.jpg binary diff=bin
+*.out binary diff=bin
+*.png binary diff=bin
+*.pdf binary diff=bin

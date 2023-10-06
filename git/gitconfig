@@ -1,8 +1,8 @@
 [user]
-    email = mathieu.fourre@epita.fr
-    name = Mathieu Fourre
+    email = "mathieu.fourre@epita.fr"
+    name = "Mathieu Fourre"
 [core]
-    editor = nvim
+    editor = "nvim"
 [push]
     autoSetupRemote = true
     followTags = true
@@ -18,25 +18,29 @@
 [tag]
     gpgsign = true
 [alias]
-    a = add
-    u = add -u
-    b = branch
-    c = commit -m
-    cu = commit -a -m
-    ca = commit --amend
-    t = tag -m "-" -a
-    p = push
-    pu = pull
-    co = checkout
-    r = reset
-    s = status
+    a = "add"
+    u = "add -u"
+    b = "branch"
+    c = "commit -m"
+    cu = "commit -a -m"
+    ca = "commit --amend"
+    t = "tag -m \"-\" -a"
+    p = "push"
+    pu = "pull"
+    co = "checkout"
+    r = "reset"
+    s = "status"
     #l = log -20 --oneline --graph
     l = "log -20 --graph --format=\"%C(auto)%h %Cblue%an%C(auto)%d %C(brightblack)%ah %Cred%G?%n  %s\""
     fire = "! git c \"$(curl -s https://whatthecommit.com/index.txt)\""
 [filter "lfs"]
     required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
+    clean = "git-lfs clean -- %f"
+    smudge = "git-lfs smudge -- %f"
+    process = "git-lfs filter-process"
+
+[diff "bin"]
+    textconv = hexdump -v -C
+    binary = true
 
 # vim: ft=toml
