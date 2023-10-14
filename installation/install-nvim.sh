@@ -5,7 +5,7 @@
 #  then
 #    mkdir "$VIMCONFIG"
 
-    # install neovim plugin manager
+# install neovim plugin manager
 #    curl -fLo "$VIMCONFIG"/autoload/plug.vim --create-dirs \
 #    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 #fi
@@ -19,3 +19,4 @@ ln -sf "$DOTFILES/NvChad/lua/plugins/" "$VIMCONFIG/lua"
 
 # custom config
 ln -sf "$DOTFILES/nvim/custom/" "$VIMCONFIG/lua"
+ln -sf "$DOTFILES/nvim/queries" "$VIMCONFIG/queries"
