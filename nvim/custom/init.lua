@@ -4,8 +4,8 @@ local augroup = vim.api.nvim_create_augroup
 vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/custom/lua_snippets"
 vim.g.c_syntax_for_h = 1
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.list = true
 vim.opt.listchars = "tab:>-,trail:."
 vim.opt.expandtab = true
