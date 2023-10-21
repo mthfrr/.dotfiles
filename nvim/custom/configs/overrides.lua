@@ -13,6 +13,7 @@ M.treesitter = {
 		"markdown",
 		"markdown_inline",
 		"python",
+		"nim",
 	},
 	indent = {
 		enable = true,
@@ -63,8 +64,11 @@ M.mason = {
 		"shfmt",
 		"shellcheck",
 
-        -- yaml
-        "yamlfix"
+		-- yaml
+		"yamlfix",
+
+		-- nim 1.XX (2.X is broken)
+		"nimlangserver",
 	},
 }
 
