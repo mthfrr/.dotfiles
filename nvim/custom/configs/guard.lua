@@ -43,7 +43,7 @@ ft("python"):fmt("black"):lint({
 
 ft("lua"):fmt("stylua")
 
-ft("html,css,scss,typescript,javascript,json"):fmt("prettier")
+ft("html,css,scss,typescript,javascript,json,markdown"):fmt("prettier")
 
 ft("yaml"):fmt({
 	cmd = "yamlfix",
@@ -59,13 +59,13 @@ ft("toml"):fmt({
 	stdin = true,
 })
 
-ft("markdown"):fmt({
-	cmd = "mdformat",
-	args = { "-" },
+ft("tex,latex"):fmt("latexindent")
+
+ft("zig"):fmt({
+	cmd = "zig",
+	args = { "fmt", "--stdin" },
 	stdin = true,
 })
-
-ft("tex,latex"):fmt("latexindent")
 
 require("guard").setup({
 	fmt_on_save = true,
