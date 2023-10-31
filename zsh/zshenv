@@ -40,6 +40,8 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 # please give me all the colors (useful with viu)
 export COLORTERM=truecolor
 
+export ABDUCO_CMD=zsh # default session in abduco are zsh
+
 # wsl X11
 if uname -r | grep -q WSL; then
     export WSL=1
