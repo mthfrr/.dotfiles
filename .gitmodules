@@ -13,3 +13,6 @@
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "nix-zsh-completions"]
+	path = nix-zsh-completions
+	url = https://github.com/nix-community/nix-zsh-completions.git

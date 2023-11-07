@@ -38,6 +38,11 @@ source $DOTFILES/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh hist
 source $DOTFILES/zsh-hist/zsh-hist.plugin.zsh
 
+# nix-zsh-completions
+source $DOTFILES/nix-zsh-completions/nix-zsh-completions.plugin.zsh
+
+fpath=($DOTFILES/nix-zsh-completions $fpath)
+
 # prompt
 source $DOTFILES/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
