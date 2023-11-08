@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "pyright", "texlab", "nim_langserver", "zls" }
+local servers = { "html", "cssls", "tsserver", "pyright", "texlab", "nim_langserver", "zls", "nil_ls" }
 
 local my_on_attach = function(client, bufnr)
 	on_attach(client, bufnr)
