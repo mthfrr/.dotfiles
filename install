@@ -4,10 +4,10 @@ set -e
 
 . ./zsh/zshenv
 
-export INSTALL="$DOTFILES"/installation
+export INSTALL="$DOTFILES/installation"
 
-. "$INSTALL"/colors.sh
-. "$INSTALL"/functions.sh
+. "installation/colors.sh"
+. "installation/functions.sh"
 
 if [ $# -ne 0 ]; then
 

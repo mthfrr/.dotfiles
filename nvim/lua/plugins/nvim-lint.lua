@@ -22,6 +22,14 @@ return {
           "--disable=R,missing-docstring,invalid-name",
         },
       },
+      shellcheck = {
+        args = {
+          "-x",
+          "--format",
+          "json",
+          "-",
+        },
+      },
     },
   },
 }
