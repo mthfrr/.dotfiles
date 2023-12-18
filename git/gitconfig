@@ -20,6 +20,7 @@
 [alias]
     a = "add"
     u = "add -u"
+    ap = "add -p"
     b = "branch"
     c = "commit -m"
     cu = "commit -a -m"
@@ -30,6 +31,8 @@
     co = "checkout"
     r = "reset"
     s = "status"
+    d = "diff"
+    ds = "diff --staged"
     #l = log -20 --oneline --graph
     l = "log -20 --graph --format=\"%C(auto)%h %Cblue%an%C(auto)%d %C(brightblack)%ah %Cred%G?%n  %s\""
     fire = "! git c \"$(curl -s https://whatthecommit.com/index.txt)\""

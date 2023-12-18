@@ -13,6 +13,7 @@ dot_info "Pull last commits"
 git pull -q
 dot_info "Update submodules"
 git submodule update --init
+git submodule foreach git fetch
 dot_info "Check update submodules..."
 submodules=$(grep -oP '^\[submodule "\K[^"]*' .gitmodules)
 for submodule in $submodules; do
