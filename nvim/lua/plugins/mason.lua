@@ -4,25 +4,24 @@ return {
     ensure_installed = {
       -- lint
       -- "pylint", -- not autoinstall since pylint in mason doesn't see libraries
+      "ruff",
       "shellcheck",
       -- seveur
       "clangd",
       "ltex-ls",
       "lua-language-server",
-      "nil",
       "pyright",
       "tectonic",
       "texlab",
       "zls",
       -- format
-      "black",
+      -- "black",
       "clang-format",
-      "isort",
+      -- "isort",
       "prettierd",
       "shfmt",
       "stylua",
       "taplo",
-      "yamlfix",
     },
   },
 }

@@ -5,4 +5,4 @@
 vim.g.c_syntax_for_h = 1 -- make header files be of C filetype
 vim.opt.wrap = true
 vim.opt.clipboard = ""
-vim.opt.conceallevel = 0 -- not hide formatting in markup
+vim.opt.conceallevel = 3 -- not hide formatting in markup

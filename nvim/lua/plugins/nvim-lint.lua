@@ -4,7 +4,7 @@ return {
     linters_by_ft = {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
-      python = { "pylint", "bandit" },
+      python = { "ruff" },
       sh = { "shellcheck" },
       nix = { "nix" },
     },

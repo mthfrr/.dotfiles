@@ -11,13 +11,20 @@ return {
       latex = { "latexindent" },
       lua = { "stylua" },
       markdown = { { "prettierd", "prettier" } },
-      python = { "isort", "black" },
+      python = function(bufnr)
+        if require("conform").get_formatter_info("ruff_format", bufnr).available then
+          return { "ruff_format" }
+        else
+          return { "isort", "black" }
+        end
+      end,
       scss = { { "prettierd", "prettier" } },
       sh = { "shfmt" },
       tex = { "latexindent" },
       toml = { "taplo" },
       typescript = { { "prettierd", "prettier" } },
-      yaml = { "yamlfix" },
+      yaml = { { "prettierd", "prettier" } },
+      rust = { "rustfmt" },
       zig = { "zigfmt" },
       ["_"] = { "trim_whitespace" },
     },
