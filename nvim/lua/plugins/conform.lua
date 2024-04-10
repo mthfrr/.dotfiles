@@ -17,7 +17,7 @@ return {
       tex = { "latexindent" },
       toml = { "taplo" },
       typescript = { { "prettierd", "prettier" } },
-      yaml = { "yamlfix" },
+      yaml = { { "prettierd", "prettier" } },
       zig = { "zigfmt" },
       ["_"] = { "trim_whitespace" },
     },
