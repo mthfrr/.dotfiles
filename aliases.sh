@@ -27,3 +27,8 @@ fi
 mktouch() {
 	mkdir -p "$(dirname "$1")" && touch "$1"
 }
+
+tmpdir() {
+	d="$(mktemp -d /tmp/"$1".XXXXXX)"
+	$SHELL -c "cd $d; exec $SHELL"
+}
