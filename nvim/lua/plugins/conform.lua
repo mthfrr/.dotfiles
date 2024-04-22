@@ -26,6 +26,7 @@ return {
       yaml = { { "prettierd", "prettier" } },
       rust = { "rustfmt" },
       zig = { "zigfmt" },
+      xml = { "xmlformat" },
       ["_"] = { "trim_whitespace" },
     },
   },
