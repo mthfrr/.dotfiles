@@ -7,6 +7,7 @@ return {
       python = { "ruff" },
       sh = { "shellcheck" },
       nix = { "nix" },
+      make = { "checkmake" },
     },
     linters = {
       clangtidy = {
