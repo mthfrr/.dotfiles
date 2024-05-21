@@ -17,6 +17,6 @@ return {
   keys = {
     { "<leader>kk", ':lua require("kiwi").open_wiki_index("wiki")<cr>', desc = "Open Wiki index" },
     { "<leader>kr", ':lua require("kiwi").open_wiki_index("rrr")<cr>', desc = "Open Wiki index" },
-    { "T", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle Markdown Task" },
+    { "T", ':lua require("kiwi").todo.toggle()<cr>', desc = "Toggle Markdown Task", ft = "markdown" },
   },
 }
