@@ -1,11 +1,15 @@
 return {
   "f-person/git-blame.nvim",
   lazy = true,
-  opt = {
+  -- event = "VeryLazy",
+  opts = {
     enabled = false,
+    date_format = "%d-%m-%y %H:%M",
   },
   cmd = {
     "GitBlameToggle",
+    "GitBlameEnable",
+    "GitBlameDisable",
     "GitBlameOpenCommitURL",
     "GitBlameCopySHA",
     "GitBlameCopyCommitURL",
