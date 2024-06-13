@@ -24,6 +24,7 @@ return {
       tex = { "latexindent" },
       toml = { "taplo" },
       typescript = { { "prettierd", "prettier" } },
+      typst = { "typstfmt" },
       yaml = { { "prettierd", "prettier" } },
       rust = { "rustfmt" },
       zig = { "zigfmt" },
