@@ -1,3 +1,5 @@
 .vim/plugged/
 .vim/.netrwhist
 __pycache__/
+nvim/lazyvim.json
+
