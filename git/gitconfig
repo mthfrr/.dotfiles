@@ -14,7 +14,7 @@
 [rerere]
     enable = true
 [commit]
-    gpgsign = true
+    gpgsign = false
 [tag]
     gpgsign = true
 [alias]
