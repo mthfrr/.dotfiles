@@ -29,7 +29,13 @@ return {
         }
       end,
       ltex = function(_, opts)
-        opts.settings = { ltex = { language = "fr" } }
+        opts.settings = {
+          ltex = {
+            language = "en",
+            additionalRules = { enablePickyRules = true, motherTongue = "fr" },
+            languageToolHttpServerUri = "http://127.0.0.1:8081",
+          },
+        }
       end,
     },
   },
