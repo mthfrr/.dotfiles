@@ -4,7 +4,7 @@ return {
     ensure_installed = {
       -- lint
       -- "pylint", -- not autoinstall since pylint in mason doesn't see libraries
-      "ruff",
+      -- "ruff",
       "shellcheck",
       -- seveur
       "clangd",

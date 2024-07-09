@@ -1,6 +1,10 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
+    servers = {
+      ruff = { mason = false },
+    },
+    ---@type table<string, fun(server:string, opts):boolean?>
     setup = {
       clangd = function(_, opts)
         opts.capabilities.offsetEncoding = { "utf-8" }
@@ -15,6 +19,7 @@ return {
           auxDirectory = ".",
           bibtexFormatter = "texlab",
           build = {
+            executable = "tectonic",
             args = {
               "-X",
               "compile",
@@ -23,7 +28,6 @@ return {
               "--keep-logs",
               "--keep-intermediates",
             },
-            executable = "tectonic",
           },
           diagnosticsDelay = 300,
         }

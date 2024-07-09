@@ -4,7 +4,7 @@ return {
     linters_by_ft = {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
-      python = { "ruff", "mypy" },
+      python = { "mypy" }, -- not ruff because it is setup as lsp
       sh = { "shellcheck" },
       nix = { "nix" },
       make = { "checkmake" },
