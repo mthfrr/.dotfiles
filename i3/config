@@ -26,18 +26,26 @@ exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id dunst
 
+exec_always --no-startup-id /bin/sh $HOME/.config/i3/layout.sh
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+set $lockscript /usr/share/xss-lock/lock.sh
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- $lockscript --nofork
+bindsym $mod+x exec /bin/bash $lockscript
+exec_always --no-startup-id xautolock -time 5 -locker $lockscript
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
-exec --no-startup-id zsh -c "rm -f ~/.cache/dmenu_run; dmenu_path"
+# rofi
+bindsym $mod+n exec $HOME/.local/bin/s1n-run
 
 # background
 exec_always --no-startup-id sh "$HOME/.fehbg"
@@ -53,16 +61,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Media player controls
-bindsym XF86AudioPlay exec mediactl PlayPause
-bindsym XF86AudioNext exec mediactl Next
-bindsym XF86AudioPrev exec mediactl Previous
-bindsym XF86AudioStop exec mediactl Stop
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
 
 # Brightness (acpilight)
-set $get_brightness xbacklight -get | cut -d '.' -f 1
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 -step 10 \
+set $get_brightness expr $(brightnessctl get) '*' 100 / $(brightnessctl max)
+bindsym XF86MonBrightnessDown exec brightnessctl --min-value s 10%-\
     && notify-send -t 300 -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 -step 10 \
+bindsym XF86MonBrightnessUp exec brightnessctl --min-value s +10% \
     && notify-send -t 300 -h int:value:$($get_brightness) -h string:synchronous:brightness "Brightness"
 
 
@@ -79,10 +87,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -91,22 +99,16 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -242,9 +244,6 @@ bar {
             urgent_workspace   #cc231c    #272727   #ebdbb2
         }
 }
-
-# lock
-bindsym $mod+x exec "i3lock -c 272727 && sleep 5 && xset dpms force off"
 
 # screenshots
 bindsym Print exec "flameshot gui --last-region"
