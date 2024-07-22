@@ -3,6 +3,7 @@ return {
   opts = {
     servers = {
       ruff = { mason = false },
+      asm_lsp = { mason = false, filetypes = { "asm", "nasm" } },
     },
     ---@type table<string, fun(server:string, opts):boolean?>
     setup = {
@@ -31,6 +32,12 @@ return {
           },
           diagnosticsDelay = 300,
         }
+      end,
+      ruff = function()
+        LazyVim.lsp.on_attach(function(client, _)
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+        end, "ruff")
       end,
       ltex = function(_, opts)
         opts.settings = {
