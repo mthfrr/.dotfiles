@@ -1,4 +1,4 @@
-use-grammars = { only = ["ninja"] }
+use-grammars = { only = ["ninja", "nftables"] }
 
 [language-server.taplo]
 environment = { "RUST_LOG" = "err" }
@@ -99,3 +99,14 @@ comment-token = "#"
 [[grammar]]
 name = "ninja"
 source = { git = "https://github.com/alemuller/tree-sitter-ninja", rev = "0a95cfdc0745b6ae82f60d3a339b37f19b7b9267" }
+
+[[language]]
+name = "nftables"
+scope = "source.nftables"
+file-types = [{ glob = "nftables*" }, { glob = "nftables*.d/*" }]
+indent = { tab-width = 2, unit = "  " }
+comment-token = "#"
+
+[[grammar]]
+name = "nftables"
+source = { git = "https://github.com/mephesto1337/tree-sitter-nftables", rev = "ba60b1eefa37857cec9b2dfc20f08fff4926d6f3" }
