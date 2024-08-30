@@ -2,4 +2,5 @@
 .vim/.netrwhist
 __pycache__/
 nvim/lazyvim.json
-
+helix/runtime/grammars/sources/
+nvim/spell/

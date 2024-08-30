@@ -28,6 +28,7 @@ else
 	dot_install nvim
 	dot_install gdb
 	dot_install python
+	dot_install helix
 
 	dot_is_installed git && dot_install git
 	dot_is_installed dunst && dot_install dunst

@@ -1,0 +1,101 @@
+use-grammars = { only = ["ninja"] }
+
+[language-server.taplo]
+environment = { "RUST_LOG" = "err" }
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
+name = "bash"
+auto-format = true
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[language-server.mypy]
+command = "efm-langserver"
+# args = ["-loglevel", "10", "-logfile", "./efm.log"]
+
+[language-server.mypy.config]
+languages = { python = [
+  { lintCommand = "mypy ${INPUT} --show-column-numbers --ignore-missing-imports --show-error-codes --check-untyped-defs", lintFormats = [
+    "%f:%l:%c: %trror: %m",
+    "%f:%l:%c: %tarning: %m",
+    "%f:%l:%c: %tote: %m",
+  ], lintSource = "mypy", prefix = "mypy", lintStdin = true },
+] }
+
+[[language]]
+name = "python"
+auto-format = true
+roots = [".git", "pyproject.toml"]
+language-servers = [
+  { name = "pyright", except-features = [
+    "format",
+  ] },
+  { name = "ruff" },
+  { name = "mypy", only-features = [
+    "diagnostics",
+  ] },
+]
+
+[[language]]
+name = "c"
+auto-format = true
+formatter = { command = "clang-format" }
+
+[[language]]
+name = "css"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "css"] }
+
+[[language]]
+name = "scss"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "scss"] }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+
+[[language]]
+name = "jsonc"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "jsonc"] }
+
+[[language]]
+name = "markdown"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[[language]]
+name = "docker-compose"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "html"] }
+
+[[language]]
+name = "ninja"
+scope = "source.ninja"
+file-types = ["ninja"]
+indent = { tab-width = 2, unit = "  " }
+comment-token = "#"
+
+
+[[grammar]]
+name = "ninja"
+source = { git = "https://github.com/alemuller/tree-sitter-ninja", rev = "0a95cfdc0745b6ae82f60d3a339b37f19b7b9267" }

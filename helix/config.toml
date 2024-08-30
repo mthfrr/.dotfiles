@@ -1,0 +1,57 @@
+theme = "nightfox"
+
+[editor]
+line-number = "relative"
+mouse = true
+rulers = [79]
+text-width = 80
+bufferline = "multiple"
+popup-border = "none"
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner",
+  "version-control",
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+]
+center = ["workspace-diagnostics", "file-type", "diagnostics"]
+right = ["selections", "register", "position", "file-encoding"]
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false # Enables ignoring hidden files
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+nbsp = "all"
+nnbsp = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+tabpad = "·"
+
+[editor.indent-guides]
+render = true
+skip-levels = 0
+
+[editor.soft-wrap]
+enable = true
+
+[keys.normal]
+X = "extend_line_above"
+G = "goto_file_end"

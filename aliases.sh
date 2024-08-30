@@ -14,6 +14,7 @@ alias ip='ip --color=auto'
 alias tree='tree -C' # force colors
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
+alias hx="helix"
 
 alias venv='. .*/bin/activate'
 
@@ -21,14 +22,14 @@ alias arch-update='sudo pacman -Syu && yay -Syu && fwupdmgr refresh && sudo fwup
 
 # reload
 if ps -p$$ -ocmd= | grep -q zsh; then
-	alias reload_zsh=". $ZDOTDIR/.zshrc $ZDOTDIR/.zshenv"
+  alias reload_zsh=". $ZDOTDIR/.zshrc $ZDOTDIR/.zshenv"
 fi
 
 mktouch() {
-	mkdir -p "$(dirname "$1")" && touch "$1"
+  mkdir -p "$(dirname "$1")" && touch "$1"
 }
 
 tmpdir() {
-	d="$(mktemp -d /tmp/"$1".XXXXXX)"
-	$SHELL -c "cd $d; exec $SHELL"
+  d="$(mktemp -d /tmp/"$1".XXXXXX)"
+  $SHELL -c "cd $d; exec $SHELL"
 }

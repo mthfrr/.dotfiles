@@ -6,7 +6,7 @@ return {
       nasm = { "asmfmt" },
       c = { "clang_format" },
       cpp = { "clang_format" },
-      css = { { "prettierd", "prettier" } },
+      css = { "prettierd", "prettier", stop_after_first = true },
       html = { { "prettierd", "prettier" } },
       javascript = { { "prettierd", "prettier" } },
       json = { { "prettierd", "prettier" } },
