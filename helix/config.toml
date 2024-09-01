@@ -31,6 +31,7 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false # Enables ignoring hidden files
+parents = true
 
 [editor.whitespace.render]
 space = "none"
