@@ -12,12 +12,13 @@ popup-border = "none"
 left = [
   "mode",
   "spinner",
+  "spacer",
   "version-control",
   "file-name",
   "read-only-indicator",
   "file-modification-indicator",
 ]
-center = ["workspace-diagnostics", "file-type", "diagnostics"]
+center = ["diagnostics", "file-type", "workspace-diagnostics"]
 right = ["selections", "register", "position", "file-encoding"]
 
 [editor.lsp]
