@@ -8,8 +8,23 @@ name = "toml"
 auto-format = true
 formatter = { command = "taplo", args = ["fmt", "-"] }
 
+[language-server.shellcheck]
+command = "efm-langserver"
+args = ["-loglevel", "10", "-logfile", "./efm.log"]
+
+[language-server.shellcheck.config]
+languages = { bash = [
+  { lintCommand = "shellcheck -f gcc -x ${INPUT}", lintFormats = [
+    '%f:%l:%c: %trror: %m',
+    '%f:%l:%c: %tarning: %m',
+    '%f:%l:%c: %tote: %m',
+  ], lintSource = "shellcheck", prefix = "shellcheck" },
+] }
+
 [[language]]
 name = "bash"
+language-servers = [{ name = "shellcheck", only-features = ["diagnostics"] }]
+formatter = { command = "shfmt" }
 auto-format = true
 
 [language-server.ruff]
@@ -94,7 +109,6 @@ scope = "source.ninja"
 file-types = ["ninja"]
 indent = { tab-width = 2, unit = "  " }
 comment-token = "#"
-
 
 [[grammar]]
 name = "ninja"
