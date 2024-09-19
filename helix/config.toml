@@ -57,3 +57,6 @@ enable = true
 [keys.normal]
 X = "extend_line_above"
 G = "goto_file_end"
+
+[keys.select]
+G = "goto_file_end"
