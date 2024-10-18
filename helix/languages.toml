@@ -58,9 +58,27 @@ language-servers = [
   ] },
 ]
 
+[language-server.clang_tidy]
+command = "efm-langserver"
+
+[language-server.clang_tidy.config]
+languages = { c = [
+  { lintCommand = "clang-tidy --checks='bugprone-*,clang-analyzer-*,concurrency-*,modernize-*,performance-*,portability-*' \"${INPUT}\"", lintFormats = [
+    "%f:%l:%c: %trror: %m",
+    "%f:%l:%c: %tarning: %m",
+    "%f:%l:%c: %tote: %m",
+  ], lintSource = "clang-tidy", prefix = "tidy", lintIgnoreExitCode = true, lintStdin = false },
+] }
+
 [[language]]
 name = "c"
 auto-format = true
+language-servers = [
+  { name = "clang_tidy", only-features = [
+    "diagnostics",
+  ] },
+  { name = "clangd" },
+]
 formatter = { command = "clang-format" }
 
 [[language]]
