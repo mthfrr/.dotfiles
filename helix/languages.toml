@@ -24,7 +24,7 @@ languages = { bash = [
 [[language]]
 name = "bash"
 language-servers = [{ name = "shellcheck", only-features = ["diagnostics"] }]
-formatter = { command = "shfmt" }
+formatter = { command = "shfmt", args = ["-i", "2"] }
 auto-format = true
 
 [language-server.ruff]
@@ -94,7 +94,7 @@ formatter = { command = "prettier", args = ["--parser", "scss"] }
 [[language]]
 name = "json"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "json"] }
+formatter = { command = "jq" }
 
 [[language]]
 name = "jsonc"

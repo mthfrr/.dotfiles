@@ -55,6 +55,9 @@ skip-levels = 1
 [editor.soft-wrap]
 enable = true
 
+[editor.smart-tab]
+enable = false
+
 [keys.normal]
 X = "extend_line_above"
 G = "goto_file_end"
