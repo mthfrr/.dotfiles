@@ -47,6 +47,9 @@ nnbsp = "␣"
 tab = "→"
 tabpad = "·"
 
+[editor.smart-tab]
+enable = false
+
 [editor.indent-guides]
 render = true
 skip-levels = 0
