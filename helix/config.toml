@@ -52,11 +52,18 @@ enable = false
 
 [editor.indent-guides]
 render = true
-skip-levels = 0
+character = '▏'
+skip-levels = 1
 
 [editor.soft-wrap]
 enable = true
 
+[editor.smart-tab]
+enable = false
+
 [keys.normal]
 X = "extend_line_above"
+G = "goto_file_end"
+
+[keys.select]
 G = "goto_file_end"

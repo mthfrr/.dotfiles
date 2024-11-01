@@ -10,7 +10,7 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [language-server.shellcheck]
 command = "efm-langserver"
-args = ["-loglevel", "10", "-logfile", "./efm.log"]
+# args = ["-loglevel", "10", "-logfile", "./efm.log"]
 
 [language-server.shellcheck.config]
 languages = { bash = [
@@ -24,7 +24,7 @@ languages = { bash = [
 [[language]]
 name = "bash"
 language-servers = [{ name = "shellcheck", only-features = ["diagnostics"] }]
-formatter = { command = "shfmt" }
+formatter = { command = "shfmt", args = ["-i", "2"] }
 auto-format = true
 
 [language-server.ruff]
@@ -49,7 +49,7 @@ name = "python"
 auto-format = true
 roots = [".git", "pyproject.toml"]
 language-servers = [
-  { name = "pyright", except-features = [
+  { name = "basedpyright", except-features = [
     "format",
   ] },
   { name = "ruff" },
@@ -58,9 +58,27 @@ language-servers = [
   ] },
 ]
 
+[language-server.clang_tidy]
+command = "efm-langserver"
+
+[language-server.clang_tidy.config]
+languages = { c = [
+  { lintCommand = "clang-tidy --checks='bugprone-*,clang-analyzer-*,concurrency-*,modernize-*,performance-*,portability-*' \"${INPUT}\"", lintFormats = [
+    "%f:%l:%c: %trror: %m",
+    "%f:%l:%c: %tarning: %m",
+    "%f:%l:%c: %tote: %m",
+  ], lintSource = "clang-tidy", prefix = "tidy", lintIgnoreExitCode = true, lintStdin = false },
+] }
+
 [[language]]
 name = "c"
 auto-format = true
+language-servers = [
+  { name = "clang_tidy", only-features = [
+    "diagnostics",
+  ] },
+  { name = "clangd" },
+]
 formatter = { command = "clang-format" }
 
 [[language]]
@@ -76,7 +94,7 @@ formatter = { command = "prettier", args = ["--parser", "scss"] }
 [[language]]
 name = "json"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "json"] }
+formatter = { command = "jq" }
 
 [[language]]
 name = "jsonc"
@@ -86,7 +104,7 @@ formatter = { command = "prettier", args = ["--parser", "jsonc"] }
 [[language]]
 name = "markdown"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "markdown"] }
+formatter = { command = "mdfmt" }
 
 [[language]]
 name = "yaml"
@@ -102,6 +120,15 @@ formatter = { command = "prettier", args = ["--parser", "yaml"] }
 name = "html"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "html"] }
+
+[[language]]
+name = "xml"
+formatter = { command = "xmlindent", args = ["-l", "120", "-i", "2"] }
+
+[[language]]
+name = "typst"
+auto-format = true
+formatter = { command = "typstyle", args = [] }
 
 [[language]]
 name = "ninja"
