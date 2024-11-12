@@ -3,7 +3,7 @@ theme = "nightfox"
 [editor]
 line-number = "relative"
 mouse = true
-rulers = [79]
+rulers = [80]
 text-width = 80
 bufferline = "multiple"
 popup-border = "none"
@@ -57,9 +57,6 @@ skip-levels = 1
 
 [editor.soft-wrap]
 enable = true
-
-[editor.smart-tab]
-enable = false
 
 [keys.normal]
 X = "extend_line_above"

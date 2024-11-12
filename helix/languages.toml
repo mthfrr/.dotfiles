@@ -80,6 +80,34 @@ language-servers = [
   { name = "clangd" },
 ]
 formatter = { command = "clang-format" }
+file-types = ["c", "h"]
+
+[[language]]
+name = "cpp"
+file-types = [
+  "cc",
+  "hh",
+  "c++",
+  "cpp",
+  "hpp",
+  "ipp",
+  "tpp",
+  "cxx",
+  "hxx",
+  "ixx",
+  "txx",
+  "ino",
+  "C",
+  "H",
+  "cu",
+  "cuh",
+  "cppm",
+  "h++",
+  "ii",
+  "inl",
+  { glob = ".hpp.in" },
+  { glob = ".h.in" },
+]
 
 [[language]]
 name = "css"
