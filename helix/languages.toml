@@ -158,6 +158,16 @@ name = "typst"
 auto-format = true
 formatter = { command = "typstyle", args = [] }
 
+[language-server.neocmakelsp]
+command = "neocmakelsp"
+args = ["--stdio"]
+
+[[language]]
+name = "cmake"
+auto-format = true
+formatter = { command = "cmake-format", args = ["-"] }
+language-servers = [{ name = "neocmakelsp" }]
+
 [[language]]
 name = "ninja"
 scope = "source.ninja"
