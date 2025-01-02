@@ -2,7 +2,7 @@
     email = "user@user"
     name = "user"
 [core]
-    editor = "nvim"
+    editor = "helix"
 [push]
     autoSetupRemote = true
     followTags = true
