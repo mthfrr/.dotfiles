@@ -3,8 +3,8 @@ if status is-interactive
     set -eg fish_greeting
 
     # Commands to run in interactive sessions can go here
-    abbr -a hx helix
-    abbr -a bat batcat
+    alias hx=helix
+    alias bat=batcat
 
     # Tide
     set -U tide_proxy_color $_tide_color_light_blue
