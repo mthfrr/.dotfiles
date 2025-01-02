@@ -8,7 +8,7 @@
     followTags = true
     useForceIfIncludes = true
 [init]
-    defaultBranch = "main"
+    defaultBranch = "master"
 [pull]
     rebase = true
 [rerere]
