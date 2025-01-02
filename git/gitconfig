@@ -1,6 +1,6 @@
 [user]
-    email = "mathieu.fourre@epita.fr"
-    name = "Mathieu Fourre"
+    email = "user@user"
+    name = "user"
 [core]
     editor = "nvim"
 [push]
