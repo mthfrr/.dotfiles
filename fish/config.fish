@@ -4,7 +4,9 @@ if status is-interactive
 
     # Commands to run in interactive sessions can go here
     alias hx=helix
-    alias bat=batcat
+    if command -v batcat
+        alias bat=batcat
+    end
 
     # Tide
     set -U tide_proxy_color $_tide_color_light_blue
