@@ -7,6 +7,7 @@ rulers = [80]
 text-width = 80
 bufferline = "multiple"
 popup-border = "none"
+auto-pairs = false
 
 [editor.statusline]
 left = [
@@ -49,6 +50,10 @@ tabpad = "·"
 
 [editor.smart-tab]
 enable = false
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+other-lines = "error"
 
 [editor.indent-guides]
 render = true
