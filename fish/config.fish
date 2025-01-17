@@ -4,6 +4,9 @@ if status is-interactive
 
     # Commands to run in interactive sessions can go here
     alias hx=helix
+    if command -v 7zz >/dev/null
+        alias 7z=7zz
+    end
     if command -v batcat >/dev/null
         alias bat=batcat
     end
