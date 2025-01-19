@@ -1,6 +1,6 @@
 if status is-interactive
     # Fish
-    set -eg fish_greeting
+    set -eg fish_greeting ""
 
     # Commands to run in interactive sessions can go here
     alias hx=helix
