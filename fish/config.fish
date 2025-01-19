@@ -13,6 +13,14 @@ if status is-interactive
         alias bat=batcat
     end
 
+    # Path
+    for i in ~/.local/bin
+        if not contains $i $PATH
+            fish_add_path $i
+        end
+    end
+
+
     # Tide
     set -U tide_proxy_color $_tide_color_light_blue
     set -U tide_proxy_bg_color normal
