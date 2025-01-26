@@ -8,11 +8,11 @@ text-width = 80
 bufferline = "multiple"
 popup-border = "none"
 auto-pairs = false
-end-of-line-diagnostics = "hint"
+end-of-line-diagnostics = "disable"
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
-other-lines = "error"
+cursor-line = "disable"
+other-lines = "disable"
 max-diagnostics = 3
 
 [editor.statusline]

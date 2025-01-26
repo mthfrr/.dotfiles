@@ -63,7 +63,7 @@ command = "efm-langserver"
 
 [language-server.clang_tidy.config]
 languages = { c = [
-  { lintCommand = "clang-tidy --checks='bugprone-*,clang-analyzer-*,concurrency-*,modernize-*,performance-*,portability-*' \"${INPUT}\"", lintFormats = [
+  { lintCommand = "clang-tidy --checks='bugprone-*,clang-analyzer-*,concurrency-*,modernize-*,performance-*,portability-*,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling' \"${INPUT}\"", lintFormats = [
     "%f:%l:%c: %trror: %m",
     "%f:%l:%c: %tarning: %m",
     "%f:%l:%c: %tote: %m",
