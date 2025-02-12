@@ -8,7 +8,7 @@ text-width = 80
 bufferline = "multiple"
 popup-border = "none"
 auto-pairs = false
-end-of-line-diagnostics = "disable"
+# end-of-line-diagnostics = "error"
 
 [editor.inline-diagnostics]
 cursor-line = "disable"
