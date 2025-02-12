@@ -5,6 +5,8 @@ if status is-interactive
     set -xg EDITOR helix
 
     # Commands to run in interactive sessions can go here
+    alias l="ls -lh"
+    alias la="ls -lha"
     alias hx=helix
     if command -v 7zz >/dev/null
         alias 7z=7zz
