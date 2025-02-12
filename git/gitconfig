@@ -16,7 +16,7 @@
 [commit]
     gpgsign = false
 [tag]
-    gpgsign = true
+    gpgsign = false
 [alias]
     a = "add"
     u = "add -u"
